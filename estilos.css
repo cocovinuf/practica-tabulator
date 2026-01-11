@@ -2,3 +2,8 @@ body {
   font-family: sans-serif;
   padding: 20px;
 }
+
+.centrado{
+  border: 1px black solid;
+  text-align: center;
+}
