@@ -1,10 +1,11 @@
 <?php
     session_start();
-    if(empty($_SESSION["id_usuario"])){
+    if(empty($_SESSION["nombre"])){
     header("location:login.php");
     exit();
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -16,18 +17,26 @@
 </head>
 <body>
     
-<h1>Esta es la vista de administrador</h1>
+<h1>Administrador:<?php echo $_SESSION["nombre"]; ?></h1>
 
 <h2>Herramientas</h2>
+<h4>Agregar alumno</h4>
 
-<h3>Agregar alumno</h3>
+
+
+
 <form method="post" name="agregar_alumno">
-<input type="text" placeholder="Apellido y nombre" name="nombre_alumno_agg"><br>
-<input type="int" placeholder="Dni" name="dni_alumno_agg"><br>
-<label>Seleccione una sede</label>
+<label for="nombre_alumno_agg">Apellido y nombre: </label>
+    <input type="text" placeholder="Apellido y nombre" name="nombre_alumno_agg"><br>
+
+<label for="dni_alumno_agg">Dni: </label>
+    <input type="int" placeholder="Dni" name="dni_alumno_agg"><br>
+
+
+<label>Sede: </label>
 <select name="sede_alumno_agg" >
-    <!-- <option value="">Seleccione una sede</option> -->
-    <option value=1>Alecrin</option>
+    <option value=""></option> 
+    <option value="1">Alecrin</option>
     <option value="2">Apóstoles</option>
     <option value="3">Chafariz</option>
     <option value="4">Guapoy</option>
@@ -37,11 +46,26 @@
     <option value="8">San Juan Bosco</option>
     <option value="9">Santa Ana</option>
     <option value="10">Tamandua</option>
-</select><br>
+</select> <br>
 
-<input type="text" placeholder="Año" name="ano_alumno_agg"><br>
+<label>Seleccione el año</label>
+<select name="ano_alumno_agg">
+<option value=""></option>
+<option value="1">1- PRIMER AÑO</option>
+<option value="2">2- SEGUNDO AÑO</option>
+<option value="3">3- TERCER AÑO</option>
+<option value="4">4- CUARTO AÑO</option>
+<option value="5">5- QUINTO AÑO</option>
+
+</select>
+
+<br>
+
 <input type="submit" value="Agregar alumno" name="btn_agg_alumno"><br><br>
+
+
 </form>
+
 
 <?php
 include "../controlador/controlador_agregar_alumno.php";
@@ -49,10 +73,7 @@ include "../controlador/controlador_agregar_alumno.php";
 ?>
 
 
-
-
-
-<h3>Eliminar alumno</h3>
+<h4>Eliminar alumno</h4>
 <input type="submit" value="Eliminar alumno">
 
 
