@@ -7,14 +7,11 @@
 </head>
 <body>
  
-
-
-
-<h2>Ingresar a su usuario</h2>
+<h2>Ingresar a su cuenta</h2>
 
 <?php
-include "conexion.php";
-include "controlador/controlador_login.php";
+include "../conexion.php";
+include "../controlador/controlador_login.php";
 ?>
 
 <form method="post">
@@ -24,7 +21,7 @@ include "controlador/controlador_login.php";
 <br><br>
 <input type="submit" name="btn_ingresar" value="Iniciar sesion"> 
 
-</form>
+</form> 
 
 
 </body>
