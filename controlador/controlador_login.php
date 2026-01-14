@@ -19,7 +19,7 @@ if(!empty($_POST["btn_ingresar"])) {
             $SESSION["rol"] = $datos -> rol_usuario;
 
             if($datos -> rol_usuario == 'Profesor' or $datos -> rol_usuario == 'Tutor'){
-                header("location:../vistas/home.php");}
+                header("location:../vistas/home_usuarios.php");}
             if($datos -> rol_usuario == 'Administrador'){
                 header("location:../vistas/home_admin.php");}else{
                 echo "Usuario o contraseña incorrectos";}

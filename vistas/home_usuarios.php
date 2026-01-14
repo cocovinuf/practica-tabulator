@@ -40,7 +40,7 @@
   <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
 
   <!-- Tu JS -->
-  <script src="../tabla.js"></script>
+  <script src="../javascript/tabla.js"></script>
 
 
 </body>

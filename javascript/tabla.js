@@ -11,7 +11,8 @@ var table = new Tabulator("#tabla-alumnos", {
     frozenRows:0,
 
     //field se refiere a la clave del json
-    columns: [
+
+        columns: [
         {title:"Nombre", field:"nombre_alumno", headerFilter:"input", headerFilterPlaceholder:"Distingue tildes"},
         {title:"DNI", field:"dni_alumno", headerFilter:"input"},
         {title:"Año", field:"ano_alumno", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
