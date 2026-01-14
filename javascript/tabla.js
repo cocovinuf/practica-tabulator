@@ -3,19 +3,57 @@
 //AjaxURL se refiere a la url desde donde se van a obtener los datos partiendo desde home.php ya que es donde se carga tabla.js
 
 var table = new Tabulator("#tabla-alumnos", {
+    layout:"fitDataTable",
     ajaxURL: "../datos.php",
     ajaxCache: false,
-    layout: "fitColumns",
     pagination: "local",
     paginationSize: 20,
     frozenRows:0,
 
     //field se refiere a la clave del json
+    columns:[
 
-        columns: [
-        {title:"Nombre", field:"nombre_alumno", headerFilter:"input", headerFilterPlaceholder:"Distingue tildes"},
-        {title:"DNI", field:"dni_alumno", headerFilter:"input"},
-        {title:"Año", field:"ano_alumno", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
-        {title:"Sede", field:"nombre_sede", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
-    ],
-});
+        {title: "Datos del alumno", columns:[
+            {title:"Nombre", field:"nombre_alumno", headerFilter:"input", headerFilterPlaceholder:"Distingue tildes"},
+            {title:"Año", field:"ano_alumno", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
+            {title:"Sede", field:"nombre_sede", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
+            ],
+        },  
+
+        {title: "Primer Trimestre", columns:[ 
+            {title:"Nota 1", field:"", editor:"input"},
+            {title:"Nota 2", field:"", editor:"input"},
+            {title:"Nota 3", field:"", editor:"input"},
+            {title:"Con", field:"", editor:"input"},
+            {title:"Promedio", field:""},
+            {title:"Rec", field:"", editor:"input"},
+            ],
+        },
+        
+        {title: "Segundo Trimestre", columns:[ 
+            {title:"Nota 4", field:"", editor:"input"},
+            {title:"Nota 5", field:"", editor:"input"},
+            {title:"Nota 6", field:"", editor:"input"},
+            {title:"Con", field:"", editor:"input"},
+            {title:"Promedio", field:""},
+            {title:"Rec", field:"", editor:"input"},
+            ],
+        },
+        
+        {title: "Tercer Trimestre", columns:[
+            {title:"Nota 7", field:"", editor:"input"},
+            {title:"Nota 8", field:"", editor:"input"},
+            {title:"Nota 9", field:"", editor:"input"},
+            {title:"Con", field:"", editor:"input"},
+            {title:"Promedio", field:""},
+            {title:"Rec", field:"", editor:"input"},
+        ],
+        },
+        {title: "Prom. Trim.", field:"",headerVertical:true},
+        {title: "DIC", field:"",headerVertical:true, editor:"input"},
+        {title: "FEB", field:"",headerVertical:true, editor:"input"},
+        {title: "Calif Def.", field:"",headerVertical:true},
+        {title: "Estado", field:"",headerVertical:true},
+
+        ],
+    });
