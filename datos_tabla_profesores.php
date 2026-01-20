@@ -3,9 +3,11 @@
 header("Content-Type: application/json");
 
 
+session_start();
+$id_materia = $_SESSION['id_materia'];
+
 
 include("conexion.php");
-
 
 
 $consulta_datos_alumnos = "
@@ -18,7 +20,7 @@ SELECT
 FROM alumnos a
 JOIN sedes s
   ON a.id_sede = s.id_sede
-LEFT JOIN inscripciones i
+JOIN inscripciones i
   ON i.id_alumno = a.id_alumno
   AND i.id_materia = $id_materia
 LEFT JOIN notas n

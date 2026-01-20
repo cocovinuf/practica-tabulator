@@ -13,7 +13,7 @@ var table = new Tabulator("#tabla_profesores", {
     //field se refiere a la clave del json
     columns:[
 
-        {title: "Datos del alumno", columns:[
+        {title: "Datos del alumno:", columns:[
             {title:"Nombre", field:"nombre_alumno", headerFilter:"input", headerFilterPlaceholder:"Distingue tildes"},
             {title:"Año", field:"ano_alumno", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
             {title:"Sede", field:"nombre_sede", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},

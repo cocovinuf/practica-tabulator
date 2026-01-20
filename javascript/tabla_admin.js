@@ -2,6 +2,8 @@
 
 //AjaxURL se refiere a la url desde donde se van a obtener los datos partiendo desde home.php ya que es donde se carga tabla.js
 
+var notaCorrespondiente 
+
 var table = new Tabulator("#tabla-alumnos", {
     layout:"fitDataTable",
     ajaxURL: "../datos.php",
@@ -15,7 +17,7 @@ var table = new Tabulator("#tabla-alumnos", {
 
         {title: "Datos del alumno", columns:[
             {title:"Nombre", field:"nombre_alumno", headerFilter:"input", headerFilterPlaceholder:"Distingue tildes"},
-            {title:"dni", field:"dni_alumno", headerFilter:"input", headerFilterPlaceholder:"Distingue tildes"},
+            {title:"Dni", field:"dni_alumno", headerFilter:"input"},
             {title:"Año", field:"ano_alumno", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
             {title:"Materia", field:"nombre_materia", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
             {title:"Sede", field:"nombre_sede", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},

@@ -14,6 +14,7 @@ include "../conexion.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../estilos/estilos_seleccion_materia.css" rel="stylesheet">
     <title>Materias</title>
 </head>
 <body>
@@ -22,25 +23,29 @@ include "../conexion.php";
 
 <h2>Bienvenid@, <?php echo $_SESSION["nombre"]; ?></h2>
 
-<a href="../controlador/controlador_cerrar_sesion.php" value="Cerrar Sesion">Cerrar Sesion</a>
-
 <h3>Materias:</h3>
 
-<?php
-    $consulta_materias = "select * from materias where id_profesor = '$_SESSION[id_usuario]'";
-    $resultado_materias = mysqli_query($conexion, $consulta_materias);
+<div class="caja-selector-materias">
+    <?php
+        $consulta_materias = "select * from materias where id_profesor = '$_SESSION[id_usuario]'";
+        $resultado_materias = mysqli_query($conexion, $consulta_materias);
 
-    while($fila = $resultado_materias -> fetch_array()){
+        while($fila = $resultado_materias -> fetch_array()){
 
-        $nombre_materia = $fila['nombre_materia'];
-        $ano_materia = $fila['ano_materia'];
-        $id_materia = $fila['id_materia'];
-?>
-    <a href="planilla_materia.php?id_materia=<?php echo $id_materia?>"> <?php echo $ano_materia . "º Año - " . $nombre_materia ?> <br> <br></a> 
+            $nombre_materia = $fila['nombre_materia'];
+            $ano_materia = $fila['ano_materia'];
+            $id_materia = $fila['id_materia'];
+    ?>
+        <a class="selector-materia" href="planilla_materia.php?id_materia=<?= $id_materia ?>&nombre_materia=<?= urlencode($nombre_materia) ?>"><?php echo $ano_materia . "º Año - " . $nombre_materia ?> <br></a> 
 
     <?php
         }
     ?>
+
+</div>
+
+<br>
+<a class="boton-cerrar-sesion" href="../controlador/controlador_cerrar_sesion.php" value="Cerrar Sesion">Cerrar Sesion</a>
 
 </body>
 </html>

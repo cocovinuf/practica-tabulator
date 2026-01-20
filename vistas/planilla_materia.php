@@ -1,3 +1,24 @@
+<?php
+// Leo los parametros pasados por URL y los asigno a una variable
+session_start();
+$_SESSION['id_materia'] = $_GET['id_materia'];
+$_SESSION['nombre_materia'] = $_GET['nombre_materia'];
+$nombre_materia = $_SESSION['nombre_materia'];
+
+
+//Comprobacion de que se envio un id_materia
+if (isset($_GET['id_materia'])) {
+    $id_materia = (int) $_GET['id_materia'];
+    echo "<h2>Materia ID: " . $id_materia . "</h2>";
+}
+if($id_materia < 1 or $id_materia >55){
+    echo "<h3>ID de materia no valido</h3>";
+    exit;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,21 +28,9 @@
 </head>
 <body>
 
-<h1>¡Funciono!</h1>
+<!-- Título de materia seleccionada -->
+<h1><?php echo $nombre_materia?> </h1>
 
-<?php
-
-if (isset($_GET['id_materia'])) {
-    $id_materia = (int) $_GET['id_materia'];
-    echo "<h2>Materia ID: " . $id_materia . "</h2>";
-}
-
-if($id_materia < 1 or $id_materia >55){
-    echo "<h3>ID de materia no valido</h3>";
-    exit;
-}
-
-?>
 
 
 

@@ -5,14 +5,24 @@ header("Content-Type: application/json");
 include("conexion.php");
 
 $sql = "
-SELECT 
-    u.nombre_alumno,
-    u.dni_alumno,
-    u.ano_alumno,
-    s.nombre_sede
-FROM alumnos u
-LEFT JOIN sedes s 
-    ON u.id_sede = s.id_sede;
+SELECT
+  a.nombre_alumno,
+  a.dni_alumno,
+  a.ano_alumno,
+  s.nombre_sede,
+  m.nombre_materia,
+  n.numero_nota,
+  n.valor_nota
+FROM alumnos a
+JOIN sedes s
+  ON a.id_sede = s.id_sede
+LEFT JOIN inscripciones i
+  ON i.id_alumno = a.id_alumno
+  AND i.id_materia = 17 
+LEFT JOIN materias m
+  ON m.id_materia = i.id_materia
+LEFT JOIN notas n
+  ON n.id_inscripcion = i.id_inscripcion;
 ";
 
 $resultado = $conexion->query($sql);
