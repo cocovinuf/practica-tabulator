@@ -21,7 +21,7 @@ var table = new Tabulator("#tabla_profesores", {
         },  
 
         {title: "Primer Trimestre", columns:[ 
-            {title:"Nota 1", field:"", editor:"input"},
+            {title:"Nota 1", field:"", editor: "input"},
             {title:"Nota 2", field:"", editor:"input"},
             {title:"Nota 3", field:"", editor:"input"},
             {title:"Con", field:"", editor:"input"},

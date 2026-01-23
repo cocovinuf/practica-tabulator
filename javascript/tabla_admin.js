@@ -2,8 +2,6 @@
 
 //AjaxURL se refiere a la url desde donde se van a obtener los datos partiendo desde home.php ya que es donde se carga tabla.js
 
-var notaCorrespondiente 
-
 var table = new Tabulator("#tabla-alumnos", {
     layout:"fitDataTable",
     ajaxURL: "../datos.php",

@@ -24,7 +24,7 @@ include "../conexion.php";
 <h2>Bienvenid@, <?php echo $_SESSION["nombre"]; ?></h2>
 
 <h3>Materias:</h3>
-
+<!--                    CAJA DEL SELECTOR DE MATERIAS                 -->
 <div class="caja-selector-materias">
     <?php
         $consulta_materias = "select * from materias where id_profesor = '$_SESSION[id_usuario]'";

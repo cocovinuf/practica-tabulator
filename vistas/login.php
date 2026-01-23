@@ -9,7 +9,7 @@
 <body>
 
 
-
+<!--                    CAJA CON CAMPOS DEL LOGIN               -->
 <div class="caja-login">
     <H1>Sistema Integrado SRTIC</H1>
     <h2>Ingresar a su cuenta</h2>

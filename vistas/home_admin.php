@@ -1,24 +1,28 @@
+<!--                    INICIO DE SESION                  -->
 <?php
     session_start();
     if(empty($_SESSION["nombre"])){
     header("location:login.php");
     exit();
-}
-?>
+    }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
-    <title>Administrador</title>
-</head>
-<body>
     
-<h1>Administrador: <?php echo $_SESSION["nombre"]; ?></h1>
+?>
+<!--                    PARTE HTML                -->
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../javascript/main.js"></script>
+        <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
+        <title>Administrador</title>
+    </head>
+    <body>
+        
+    <h1>Administrador: <?php echo $_SESSION["nombre"]; ?></h1>
 
-<h2>Herramientas</h2>
+    <h2>Herramientas</h2>
 
 <!--                    AGREGAR ALUMNO                  -->
 <div class="caja-herramientas-alumno">
@@ -67,8 +71,6 @@
         ?>
 
 </div>
-
-
 <!--                    ELIMINAR ALUMNO                 -->
 <div class="caja-herramientas-alumno">
     <h4>Eliminar alumno</h4>
@@ -82,25 +84,18 @@
         include "../controlador/controlador_eliminar_alumno.php";
         ?>
 </div>
+<!--                    ACTIVAR/DESACTIVAR EDICION DE NOTAS                 -->
 
-
-<!--                    ACTIVAR/DESACTIVAR EDICION                 -->
 <div class="caja-herramientas-alumno">
     <h4>Edicion de notas en planillas</h4>
-    <form method="post">
-        <select name="des_activar_edicion_notas">
-
-            <option value="activar">Activada</option>
-            <option value="desactivar">Desactivada</option>
-
+    <form>
+        <select id ="seleccion_edicion_notas" onChange="cambiadorEstado()">
+          <option value='"input"'>Activada</option>
+          <option value='""'>Desactivada</option>
         </select>
-        <br> <br>
-        <input type="submit" name="btn_modificar_edicion" value="Confirmar" >
     </form>
 </div>
-
 <br><br>
-
 
 <!--                    CERRAR SESION                -->
 <a class="boton-cerrar-sesion" href="../controlador/controlador_cerrar_sesion.php" value="Cerrar Sesion">Cerrar Sesion</a>
@@ -108,8 +103,10 @@
 <br><br><br><br>
 
 <!--                    TABULATOR               -->
-  <div id="tabla-alumnos"></div>
 
+
+<h2>Tabla admin</h2> <br>
+  <div id="tabla-alumnos"></div>
 
   <!-- Tabulator CSS (CDN) -->
   <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
@@ -119,5 +116,19 @@
 
   <!-- Tu JS -->
   <script src="../javascript/tabla_admin.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

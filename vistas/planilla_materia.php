@@ -1,20 +1,20 @@
 <?php
-// Leo los parametros pasados por URL y los asigno a una variable
-session_start();
-$_SESSION['id_materia'] = $_GET['id_materia'];
-$_SESSION['nombre_materia'] = $_GET['nombre_materia'];
-$nombre_materia = $_SESSION['nombre_materia'];
+    // Leo los parametros pasados por URL y los asigno a una variable
+    session_start();
+    $_SESSION['id_materia'] = $_GET['id_materia'];
+    $_SESSION['nombre_materia'] = $_GET['nombre_materia'];
+    $nombre_materia = $_SESSION['nombre_materia'];
 
 
-//Comprobacion de que se envio un id_materia
-if (isset($_GET['id_materia'])) {
-    $id_materia = (int) $_GET['id_materia'];
-    echo "<h2>Materia ID: " . $id_materia . "</h2>";
-}
-if($id_materia < 1 or $id_materia >55){
-    echo "<h3>ID de materia no valido</h3>";
-    exit;
-}
+    //Comprobacion de que se envio un id_materia
+    if (isset($_GET['id_materia'])) {
+        $id_materia = (int) $_GET['id_materia'];
+        echo "<h2>Materia ID: " . $id_materia . "</h2>";
+    }
+    if($id_materia < 1 or $id_materia >55){
+        echo "<h3>ID de materia no valido</h3>";
+        exit;
+    }
 
 
 ?>
@@ -28,14 +28,12 @@ if($id_materia < 1 or $id_materia >55){
 </head>
 <body>
 
-<!-- Título de materia seleccionada -->
+<!-- TITULO DE MATERIA SELECCIONADA -->
 <h1><?php echo $nombre_materia?> </h1>
 
 
-
-
-
-<div id="tabla_profesores"></div>
+<!--                    TABULATOR               -->
+<div id="tabla_profesores" ></div>
 
   <!-- Tabulator CSS (CDN) -->
   <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
@@ -47,7 +45,8 @@ if($id_materia < 1 or $id_materia >55){
   <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
 
   <!-- Tu JS -->
-  <script src="../javascript/tabla_profesores.js"></script>
+  <script src="../javascript/tabla_profesores.js" ></script>
 
 </body>
+
 </html>
