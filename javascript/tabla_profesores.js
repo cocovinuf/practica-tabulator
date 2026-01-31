@@ -7,7 +7,7 @@ var table = new Tabulator("#tabla_profesores", {
     ajaxURL: "../datos_tabla_profesores.php",
     ajaxCache: false,
     pagination: "local",
-    paginationSize: 20,
+    paginationSize: 20, 
     frozenRows:0,
 
     //field se refiere a la clave del json
@@ -57,3 +57,14 @@ var table = new Tabulator("#tabla_profesores", {
 
         ],
     });
+    
+
+table.on("cellEdited", function(cell){
+    let fila = cell.getRow().getData();
+
+    console.log(fila);
+
+});
+
+
+

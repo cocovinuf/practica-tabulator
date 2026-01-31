@@ -106,6 +106,7 @@
 
 
 <h2>Tabla admin</h2> <br>
+<h3>Esta tabla muestra a todos los alumnos y todas sus notas como registros distintos, cuando se solucione la cuestion de acomodar las notas en una fila, aplicarlo aca</h3>
   <div id="tabla-alumnos"></div>
 
   <!-- Tabulator CSS (CDN) -->

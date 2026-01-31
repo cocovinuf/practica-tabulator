@@ -17,8 +17,7 @@ FROM alumnos a
 JOIN sedes s
   ON a.id_sede = s.id_sede
 LEFT JOIN inscripciones i
-  ON i.id_alumno = a.id_alumno
-  AND i.id_materia = 17 
+  ON i.id_alumno = a.id_alumno  
 LEFT JOIN materias m
   ON m.id_materia = i.id_materia
 LEFT JOIN notas n
