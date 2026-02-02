@@ -14,16 +14,16 @@ var table = new Tabulator("#tabla_profesores", {
     columns:[
 
         {title: "Datos del alumno:", columns:[
-            {title:"Nombre", field:"nombre_alumno", headerFilter:"input", headerFilterPlaceholder:"Distingue tildes"},
-            {title:"Año", field:"ano_alumno", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
-            {title:"Sede", field:"nombre_sede", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
+            {title:"Nombre", field:"nombre", headerFilter:"input", headerFilterPlaceholder:"Distingue tildes"},
+            {title:"Año", field:"ano", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
+            {title:"Sede", field:"sede", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
             ],
         },  
 
         {title: "Primer Trimestre", columns:[ 
-            {title:"Nota 1", field:"", editor: "input"},
-            {title:"Nota 2", field:"", editor:"input"},
-            {title:"Nota 3", field:"", editor:"input"},
+            {title:"Nota 1", field:"T1N1", editor: "input"},
+            {title:"Nota 2", field:"T1N2", editor:"input"},
+            {title:"Nota 3", field:"T1N3", editor:"input"},
             {title:"Con", field:"", editor:"input"},
             {title:"Promedio", field:"",headerVertical:true},
             {title:"Rec", field:"", editor:"input"},
@@ -31,9 +31,9 @@ var table = new Tabulator("#tabla_profesores", {
         },
         
         {title: "Segundo Trimestre", columns:[ 
-            {title:"Nota 4", field:"", editor:"input"},
-            {title:"Nota 5", field:"", editor:"input"},
-            {title:"Nota 6", field:"", editor:"input"},
+            {title:"Nota 4", field:"T2N4", editor:"input"},
+            {title:"Nota 5", field:"T2N5", editor:"input"},
+            {title:"Nota 6", field:"T2N6", editor:"input"},
             {title:"Con", field:"", editor:"input"},
             {title:"Promedio", field:"",headerVertical:true},
             {title:"Rec", field:"", editor:"input"},
@@ -41,9 +41,9 @@ var table = new Tabulator("#tabla_profesores", {
         },
         
         {title: "Tercer Trimestre", columns:[
-            {title:"Nota 7", field:"", editor:"input"},
-            {title:"Nota 8", field:"", editor:"input"},
-            {title:"Nota 9", field:"", editor:"input"},
+            {title:"Nota 7", field:"T3N7", editor:"input"},
+            {title:"Nota 8", field:"T3N8", editor:"input"},
+            {title:"Nota 9", field:"T3N9", editor:"input"},
             {title:"Con", field:"", editor:"input"},
             {title:"Promedio", field:"",headerVertical:true},
             {title:"Rec", field:"", editor:"input"},
