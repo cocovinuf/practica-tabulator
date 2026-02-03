@@ -26,7 +26,7 @@
 
 <!--                    AGREGAR ALUMNO                  -->
 <div class="caja-herramientas-alumno">
-    <h4>Agregar alumno</h4>
+    <h4>Agregar alumno a la lista</h4>
         <form method="post" name="agregar_alumno">
             <label class="etiquetas-herramientas" for="nombre_alumno_agg">Apellido y nombre: </label>
                 <input type="text" placeholder="Apellido y nombre" name="nombre_alumno_agg"><br>
@@ -71,6 +71,27 @@
         ?>
 
 </div>
+
+<!--                    INSCRIBIR ALUMNO                 -->
+<div class="caja-herramientas-alumno">
+    <h4>Inscribir alumno</h4>
+    <form method = "POST">
+        <input type="text" placeholder="ID del alumno" name="id_alumno_inscribir">
+        <select name="id_materia_inscribir">
+            <option value= 55 >55 - Sociologia 5to</option>
+        
+        </select>
+        
+        <input type="submit" name="btn_inscribir_alumno" value="Inscribir alumno">
+    </form>
+
+        <?php
+        include "../controlador/controlador_inscribir_alumno.php";
+        ?>
+
+</div>
+
+
 <!--                    ELIMINAR ALUMNO                 -->
 <div class="caja-herramientas-alumno">
     <h4>Eliminar alumno</h4>

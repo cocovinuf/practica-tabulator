@@ -18,7 +18,9 @@ SELECT
   s.nombre_sede,
   n.trimestre_nota,
   n.numero_nota,
-  n.valor_nota
+  n.valor_nota,
+  n.tipo_nota,
+  i.id_inscripcion
 FROM alumnos a
 JOIN sedes s
   ON a.id_sede = s.id_sede
@@ -50,14 +52,14 @@ $json_sintetizado = [];
 
 for ($i=0; $i < $cantidad_datos ; $i++) { 
   //Determino datos
-  $id = $datos_alumnos[$i]['id_alumno'];
+  $id_inscripcion = $datos_alumnos[$i]['id_inscripcion'];
   $nombre = $datos_alumnos[$i]['nombre_alumno'];
   $sede = $datos_alumnos[$i]['nombre_sede'];
   $ano = $datos_alumnos[$i]['ano_alumno'];
 
   //Genero primer array asociativo
 
-  if ($id != $id_actual) {
+  if ($id_inscripcion != $id_actual) {
 
     // si no es el primer alumno, guardo el anterior
     if ($id_actual !== null) {
@@ -70,10 +72,11 @@ for ($i=0; $i < $cantidad_datos ; $i++) {
     $datos_unificados = [
         'nombre' => $nombre,
         'sede' => $sede,
-        'ano' => $ano
+        'ano' => $ano,
+        'id_inscripcion' => $id_inscripcion
     ];
 
-    $id_actual = $id;
+    $id_actual = $id_inscripcion;
   }
 
   // Empiezo con las notas
@@ -82,9 +85,10 @@ for ($i=0; $i < $cantidad_datos ; $i++) {
   $trimestre = $datos_alumnos[$i]['trimestre_nota'];
   $numero_nota = $datos_alumnos[$i]['numero_nota'];
   $valor = $datos_alumnos[$i]['valor_nota'];
+  $tipo = $datos_alumnos[$i]['tipo_nota'];
     
   //Genero el 2do array asociativo
-  $clasificacion_nota = 'T'. $trimestre . 'N' . $numero_nota ;
+  $clasificacion_nota = 'T'. $trimestre . 'N' . $numero_nota . $tipo ;
   $nota_clasificada[$clasificacion_nota] = $valor;  
 
 };

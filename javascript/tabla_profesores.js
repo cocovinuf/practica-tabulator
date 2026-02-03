@@ -21,9 +21,9 @@ var table = new Tabulator("#tabla_profesores", {
         },  
 
         {title: "Primer Trimestre", columns:[ 
-            {title:"Nota 1", field:"T1N1", editor: "input"},
-            {title:"Nota 2", field:"T1N2", editor:"input"},
-            {title:"Nota 3", field:"T1N3", editor:"input"},
+            {title:"Nota 1", field:"T1N1Envio", editor: "input"},
+            {title:"Nota 2", field:"T1N2Envio", editor:"input"},
+            {title:"Nota 3", field:"T1N3Envio", editor:"input"},
             {title:"Con", field:"", editor:"input"},
             {title:"Promedio", field:"",headerVertical:true},
             {title:"Rec", field:"", editor:"input"},
@@ -31,9 +31,9 @@ var table = new Tabulator("#tabla_profesores", {
         },
         
         {title: "Segundo Trimestre", columns:[ 
-            {title:"Nota 4", field:"T2N4", editor:"input"},
-            {title:"Nota 5", field:"T2N5", editor:"input"},
-            {title:"Nota 6", field:"T2N6", editor:"input"},
+            {title:"Nota 4", field:"T2N4Envio", editor:"input"},
+            {title:"Nota 5", field:"T2N5Envio", editor:"input"},
+            {title:"Nota 6", field:"T2N6Envio", editor:"input"},
             {title:"Con", field:"", editor:"input"},
             {title:"Promedio", field:"",headerVertical:true},
             {title:"Rec", field:"", editor:"input"},
@@ -41,9 +41,9 @@ var table = new Tabulator("#tabla_profesores", {
         },
         
         {title: "Tercer Trimestre", columns:[
-            {title:"Nota 7", field:"T3N7", editor:"input"},
-            {title:"Nota 8", field:"T3N8", editor:"input"},
-            {title:"Nota 9", field:"T3N9", editor:"input"},
+            {title:"Nota 7", field:"T3N7Envio", editor:"input"},
+            {title:"Nota 8", field:"T3N8Envio", editor:"input"},
+            {title:"Nota 9", field:"T3N9Envio", editor:"input"},
             {title:"Con", field:"", editor:"input"},
             {title:"Promedio", field:"",headerVertical:true},
             {title:"Rec", field:"", editor:"input"},
@@ -61,8 +61,21 @@ var table = new Tabulator("#tabla_profesores", {
 
 table.on("cellEdited", function(cell){
     let fila = cell.getRow().getData();
+    
+    //console.log(fila);
 
-    console.log(fila);
+    fetch("../controlador/controlador_guardar_notas.php", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(fila)
+    })
+    .then(res => res.json())
+    .then(resp => {
+    console.log(resp);
+    });
+
 
 });
 

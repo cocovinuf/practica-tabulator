@@ -11,7 +11,20 @@ if(!empty($_POST["btn_agg_alumno"])) {
         $sede_alumno_agg = $_POST["sede_alumno_agg"];
         $ano_alumno_agg = $_POST["ano_alumno_agg"];
         
-        $sql = $conexion -> query("insert into alumnos (nombre_alumno, dni_alumno, id_sede, ano_alumno) values ('$nombre_alumno_agg', '$dni_alumno_agg', '$sede_alumno_agg', '$ano_alumno_agg')");
+        $sql = $conexion -> query(
+            "INSERT INTO alumnos(
+            nombre_alumno, 
+            dni_alumno, 
+            id_sede, 
+            ano_alumno) 
+            
+            VALUES (
+            '$nombre_alumno_agg', 
+            '$dni_alumno_agg', 
+            '$sede_alumno_agg', 
+            '$ano_alumno_agg')");
+
+            
 
         if($sql){
             echo "Alumno agregado correctamente";
