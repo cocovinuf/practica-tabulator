@@ -51,53 +51,79 @@ $indice = -1;
 $json_sintetizado = [];
 
 for ($i=0; $i < $cantidad_datos ; $i++) { 
-  //Determino datos
-  $id_inscripcion = $datos_alumnos[$i]['id_inscripcion'];
-  $nombre = $datos_alumnos[$i]['nombre_alumno'];
-  $sede = $datos_alumnos[$i]['nombre_sede'];
-  $ano = $datos_alumnos[$i]['ano_alumno'];
 
+$id_inscripcion = $datos_alumnos[$i]['id_inscripcion']; 
+$nombre = $datos_alumnos[$i]['nombre_alumno']; 
+$sede = $datos_alumnos[$i]['nombre_sede']; 
+$ano = $datos_alumnos[$i]['ano_alumno'];
   //Genero primer array asociativo
 
   if ($id_inscripcion != $id_actual) {
 
-    // si no es el primer alumno, guardo el anterior
+    // si no es el primer alumno, no entra. Guarda siempre el alumno de la vuelta anterior
     if ($id_actual !== null) {
-        $json_sintetizado[$indice] = array_merge($datos_unificados, $nota_clasificada);
+
+
+      $json_sintetizado[$indice] = array_merge($datos_unificados, $nota_clasificada);
     }
 
     $indice++;
+    
+    // Creo para cada alumno su array de notas
     $nota_clasificada = [];
-
+    
+    //Seccion DATOS
+    //Determino asigno el dato a un indice de array asociativo
     $datos_unificados = [
-        'nombre' => $nombre,
-        'sede' => $sede,
-        'ano' => $ano,
-        'id_inscripcion' => $id_inscripcion
+      'id_inscripcion' => $id_inscripcion,
+      'nombre' => $nombre,
+      'sede' => $sede,
+      'ano' => $ano
     ];
 
     $id_actual = $id_inscripcion;
   }
 
-  // Empiezo con las notas
+  // Seccion NOTAS
+  // Determino la clasificacion de la nota
+    $trimestre = $datos_alumnos[$i]['trimestre_nota'];
+    $numero_nota = $datos_alumnos[$i]['numero_nota'];
+    $tipo = $datos_alumnos[$i]['tipo_nota'];
+    $valor = $datos_alumnos[$i]['valor_nota'];
 
-  // Determino los datos de notas
-  $trimestre = $datos_alumnos[$i]['trimestre_nota'];
-  $numero_nota = $datos_alumnos[$i]['numero_nota'];
-  $valor = $datos_alumnos[$i]['valor_nota'];
-  $tipo = $datos_alumnos[$i]['tipo_nota'];
-    
-  //Genero el 2do array asociativo
-  $clasificacion_nota = 'T'. $trimestre . 'N' . $numero_nota . $tipo ;
-  $nota_clasificada[$clasificacion_nota] = $valor;  
+  //Genero el 2do array asociativo (el de notas)
+    $clasificacion_nota = 'T'. $trimestre . 'N' . $numero_nota . $tipo ;
+    $nota_clasificada[$clasificacion_nota] = $valor;  
 
 };
 
+// Cargo al ultimo alumno en el array general
 $json_sintetizado[$indice] = array_merge($datos_unificados, $nota_clasificada);
 
+
+
+
 /*
+$indice = -1;
+$alumno_actual = null;
+
+foreach($json_sintetizado as $alumno){
+  foreach($alumno as $clasificacion_nota => $nota){
+
+    if()
+
+
+    if(str_contains($clasificacion_nota,'T1')){
+      
+    };
+  };
+};
+
+
+
 echo "aca va el resultado que deberia ser final:";
 print_r($json_sintetizado);
 */
+
 
 echo json_encode($json_sintetizado);

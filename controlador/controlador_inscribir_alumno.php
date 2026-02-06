@@ -35,40 +35,36 @@ if(isset($_POST['btn_inscribir_alumno'])){
         </form>
         <?php
 
-        if(isset($_POST['btn_confirmar_inscripcion'])){
-            $id_alumno = $_POST['id_alumno'];
-            $id_materia = $_POST['id_materia'];
 
-            $consulta_inscripcion = $conexion -> query("
-            INSERT INTO inscripciones (id_alumno, id_materia)
-            SELECT $id_alumno, $id_materia
-            FROM DUAL
-            WHERE NOT EXISTS (
-            SELECT 1 
-            FROM inscripciones 
-            WHERE id_alumno = '$id_alumno' 
-            AND id_materia = '$id_materia'
-            );"
-            );
-
-            if($consulta_inscripcion){
-                echo "Alumno inscripto";    
-            }else{
-                echo "Error en la consulta sql";
-            }
-            
-    
-        }
 
 
     }
 
-
-
-
-
 }
 
+if(isset($_POST['btn_confirmar_inscripcion'])){
+    $id_alumno = $_POST['id_alumno'];
+    $id_materia = $_POST['id_materia'];
 
+    $consulta_inscripcion = $conexion -> query("
+    INSERT INTO inscripciones (id_alumno, id_materia)
+    SELECT $id_alumno, $id_materia
+    FROM DUAL
+    WHERE NOT EXISTS (
+    SELECT 1 
+    FROM inscripciones 
+    WHERE id_alumno = '$id_alumno' 
+    AND id_materia = '$id_materia'
+    );"
+    );
+
+    if($consulta_inscripcion){
+        echo "Alumno inscripto";    
+    }else{
+        echo "Error en la consulta sql";
+    }
+    
+
+}
 
 ?>

@@ -17,28 +17,63 @@ if ($datos === null) {
   exit;
 }
 
+
 $id_inscripcion = $datos['id_inscripcion'];
 
+// Dentro de datos (que es un array asociativo), refierete al indice como "clave" y a su valor como "valor"
 foreach ($datos as $clave => $valor) {
-    if (preg_match('/^T(\d+)N(\d+)([A-Za-z]+)$/', $clave, $m)) {
+ // Si la clave coincide con el patrón:
+ // T + uno o más dígitos, N + uno o más dígitos, seguido de letras,
+ // entonces se capturan esas partes y se guardan en el array $m. m[0] tiene el array completo y los demas tienen cada parte
+  
+  if (preg_match('/^T(\d+)N(\d+)([A-Za-z]+)$/', $clave, $m)) {
+    $trimestre   = $m[1];
+    $numeroNota  = $m[2];
+    $tipoNota   = $m[3];
 
-        $trimestre   = $m[1];
-        $numeroNota  = $m[2];
-        $tipoNota   = $m[3];
-        // Operador ternario: Es un if en una sola linea. Si valor es un string vacio entonces nota vale null, sino nota vale valor
-        $notaSQL = ($valor === "") ? "NULL" : "'$valor'";
+    // Operador ternario: Es un if en una sola linea. Si valor es un string vacio entonces nota vale null, sino nota vale valor
+    $notaSQL = ($valor === "") ? "NULL" : "'$valor'";
 
-           $sql = $conexion -> query("
-            
-           UPDATE notas SET valor_nota = $notaSQL
-           WHERE id_inscripcion = '$id_inscripcion'
-           AND trimestre_nota = '$trimestre'
-           AND numero_nota = '$numeroNota'
-           AND tipo_nota = '$tipoNota';"
-           );
+    $update = "UPDATE notas SET valor_nota = $notaSQL
+    WHERE id_inscripcion = '$id_inscripcion'
+    AND trimestre_nota = '$trimestre'
+    AND numero_nota = '$numeroNota'
+    AND tipo_nota = '$tipoNota';";
 
+    $conexion -> query($update);
+
+    if($conexion -> affected_rows === 0)
+  
+      $check = $conexion->query("
+      SELECT 1 FROM notas
+      WHERE id_inscripcion = $id_inscripcion
+      AND trimestre_nota = $trimestre
+      AND numero_nota = $numeroNota
+      AND tipo_nota = '$tipoNota'
+    ");
+
+    if($check -> num_rows === 0){
+    
+    $insert = "INSERT INTO `notas`(
+    `id_inscripcion`, 
+    `trimestre_nota`, 
+    `numero_nota`, 
+    `valor_nota`, 
+    `tipo_nota`) 
+    VALUES (
+    $id_inscripcion,
+    $trimestre,
+    $numeroNota,
+    $notaSQL,
+    '$tipoNota');";
+
+    $conexion -> query($insert);
     }
+
+
+  }
+
 }
 
-echo json_encode(["ok" => true]);
+echo json_encode(["ok => true"]);
 

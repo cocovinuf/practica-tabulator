@@ -24,9 +24,9 @@ var table = new Tabulator("#tabla_profesores", {
             {title:"Nota 1", field:"T1N1Envio", editor: "input"},
             {title:"Nota 2", field:"T1N2Envio", editor:"input"},
             {title:"Nota 3", field:"T1N3Envio", editor:"input"},
-            {title:"Con", field:"", editor:"input"},
-            {title:"Promedio", field:"",headerVertical:true},
-            {title:"Rec", field:"", editor:"input"},
+            {title:"Con", field:"T1N1Concepto", editor:"input"},
+            {title:"Promedio", field:"T1N2Promedio",headerVertical:true},
+            {title:"Rec", field:"T1N3Recuperatorio", editor:"input"},
             ],
         },
         
@@ -34,9 +34,9 @@ var table = new Tabulator("#tabla_profesores", {
             {title:"Nota 4", field:"T2N4Envio", editor:"input"},
             {title:"Nota 5", field:"T2N5Envio", editor:"input"},
             {title:"Nota 6", field:"T2N6Envio", editor:"input"},
-            {title:"Con", field:"", editor:"input"},
-            {title:"Promedio", field:"",headerVertical:true},
-            {title:"Rec", field:"", editor:"input"},
+            {title:"Con", field:"T2N1Concepto", editor:"input"},
+            {title:"Promedio", field:"T2N2Promedio",headerVertical:true},
+            {title:"Rec", field:"T2N3Recuperatorio", editor:"input"},
             ],
         },
         
@@ -44,16 +44,16 @@ var table = new Tabulator("#tabla_profesores", {
             {title:"Nota 7", field:"T3N7Envio", editor:"input"},
             {title:"Nota 8", field:"T3N8Envio", editor:"input"},
             {title:"Nota 9", field:"T3N9Envio", editor:"input"},
-            {title:"Con", field:"", editor:"input"},
-            {title:"Promedio", field:"",headerVertical:true},
-            {title:"Rec", field:"", editor:"input"},
+            {title:"Con", field:"T3N1Concepto", editor:"input"},
+            {title:"Promedio", field:"T3N2Promedio",headerVertical:true},
+            {title:"Rec", field:"T3N3Recuperatorio", editor:"input"},
         ],
         },
-        {title: "Prom. Trim.", field:"",headerVertical:true},
-        {title: "DIC", field:"",headerVertical:true, editor:"input"},
-        {title: "FEB", field:"",headerVertical:true, editor:"input"},
-        {title: "Calif Def.", field:"",headerVertical:true},
-        {title: "Estado", field:"",headerVertical:true},
+        {title: "Prom. Trim.", field:"T4N1PromTrim",headerVertical:true},
+        {title: "DIC", field:"T4N2Diciembre",headerVertical:true, editor:"input"},
+        {title: "FEB", field:"T4N3Febrero",headerVertical:true, editor:"input"},
+        {title: "Calif Def.", field:"T4N5CalifDef",headerVertical:true},
+        {title: "Estado", field:"T4N6Estado",headerVertical:true},
 
         ],
     });
@@ -61,9 +61,9 @@ var table = new Tabulator("#tabla_profesores", {
 
 table.on("cellEdited", function(cell){
     let fila = cell.getRow().getData();
-    
-    //console.log(fila);
 
+    console.log(fila);
+    
     fetch("../controlador/controlador_guardar_notas.php", {
     method: "POST",
     headers: {
