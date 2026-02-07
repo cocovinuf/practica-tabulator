@@ -19,26 +19,35 @@ if(isset($_POST['btn_inscribir_alumno'])){
         AND id_materia = $id_materia   
         ;");
 
-        $fila = $consulta_confirmacion -> fetch_assoc();
-        $nombreA = $fila['nombre_alumno'];
-        $nombreM = $fila['nombre_materia'];
 
-        echo "Desea inscribir a " , $nombreA , " en  " , $nombreM, "?";
 
-        ?>
-        <form method="post">
-            <input type="hidden" name="id_alumno" value="<?php echo $id_alumno; ?>">
-            <input type="hidden" name="id_materia" value="<?php echo $id_materia; ?>">
-            <input type="submit" name="btn_confirmar_inscripcion" value="Confirmar"> 
-            <input type="submit" name="btn_cancelar_inscripcion" value="Cancelar"> 
+        if($conexion -> affected_rows > 0){
+            $fila = $consulta_confirmacion -> fetch_assoc();
+            $nombreA = $fila['nombre_alumno'];
+            $nombreM = $fila['nombre_materia'];
 
-        </form>
-        <?php
+            echo "Desea inscribir a " , $nombreA , " en  " , $nombreM, "?";
 
+            ?>
+            <form method="post">
+                <input type="hidden" name="id_alumno" value="<?php echo $id_alumno; ?>">
+                <input type="hidden" name="id_materia" value="<?php echo $id_materia; ?>">
+                <input type="submit" name="btn_confirmar_inscripcion" value="Confirmar"> 
+                <input type="submit" name="btn_cancelar_inscripcion" value="Cancelar"> 
+
+            </form>
+            <?php
+        }else{
+            echo "<script>mostrarMensaje('DNI inexistente')</script>";
+        }
+
+
+
+    
     }
 
     if(empty($_POST['id_alumno_inscribir']) OR empty($_POST['id_materia_inscribir'])){
-        echo "Ingrese todos los datos";
+        echo "<script>mostrarMensaje('Ingrese todos los datos necesarios')</script>";
     }
 
 }
@@ -59,10 +68,10 @@ if(isset($_POST['btn_confirmar_inscripcion'])){
     );"
     );
 
-    if($consulta_inscripcion){
-        echo "Alumno inscripto";    
+    if($conexion -> affected_rows > 0){
+        echo "<script>mostrarMensaje('Alumno agregado con exito')</script>";  
     }else{
-        echo "Error en la consulta sql";
+        echo "<script>mostrarMensaje('Alumno no inscripto. Error de base de datos)</script>";
     }
     
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../estilos/estilos_login.css" rel="stylesheet">
-    <title>Login SISRTIC</title>
+    <title>S.I. ESRTIC</title>
 </head>
 <body>
 

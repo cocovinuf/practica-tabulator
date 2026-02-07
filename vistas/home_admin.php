@@ -15,6 +15,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="../javascript/main.js"></script>
+        <script src='../javascript/mostrar_mensaje.js'></script>
         <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
         <title>Administrador</title>
     </head>

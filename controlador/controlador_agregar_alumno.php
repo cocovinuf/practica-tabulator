@@ -22,18 +22,18 @@ if(!empty($_POST["btn_agg_alumno"])) {
             '$nombre_alumno_agg', 
             '$dni_alumno_agg', 
             '$sede_alumno_agg', 
-            '$ano_alumno_agg')");
-
-            
+            '$ano_alumno_agg')"
+        );
 
         if($sql){
-            echo "Alumno agregado correctamente";
+            echo "<script>mostrarMensaje('Alumno agregado con exito')</script>";
+            
         }else{
-            echo "Error al agregar alumno";
+            echo "<script>mostrarMensaje('Error: No se pudo agregar el alumno por un error en la base de datos')</script>";
         }
 
     }else{
-        echo "Ingrese todos los datos";
+        echo "DEBE INGRESAR TODOS LOS DATOS";
     }
 }
 

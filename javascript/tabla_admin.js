@@ -4,7 +4,7 @@
 
 var table = new Tabulator("#tabla_admin", {
     layout:"fitDataTable",
-    ajaxURL: "../datos.php",
+    ajaxURL: "../datos_tabla_admin.php",
     ajaxCache: false,
     pagination: "local",
     paginationSize: 20,

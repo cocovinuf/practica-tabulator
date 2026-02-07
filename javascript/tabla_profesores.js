@@ -73,8 +73,22 @@ table.on("cellEdited", function(cell){
     })
     .then(res => res.json())
     .then(resp => {
-    console.log(resp);
+    console.log('Guardado de notas: ' + resp);
     });
+
+
+    fetch("../controlador/controlador_calcular_promedios.php", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(fila)
+    })
+    .then(res => res.json())
+    .then(resp => {
+    console.log('Calculo de promedio: ' + resp);
+    });
+
 
 
 });
