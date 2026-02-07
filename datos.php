@@ -6,6 +6,7 @@ include("conexion.php");
 
 $sql = "
 SELECT
+  a.id_alumno,
   a.nombre_alumno,
   a.dni_alumno,
   a.ano_alumno,
@@ -39,22 +40,6 @@ while ($fila = $resultado->fetch_assoc()) {
     $datos[] = $fila;
 }
 
-
-/* Lo que se guarda es algo así:
-
-[
-  [
-    "id_alumno" => 1,
-    "nombre_alumno" => "Juan",
-    "nombre_sede" => "Central"
-  ],
-  [
-    "id_alumno" => 2,
-    "nombre_alumno" => "Ana",
-    "nombre_sede" => "Norte"
-  ]
-]
- */
 
 
 //Esto convierte el array de arrays en un json. Es decir un tipo de dato con estructura clave valor que u

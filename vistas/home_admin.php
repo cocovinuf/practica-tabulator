@@ -77,11 +77,36 @@
     <h4>Inscribir alumno</h4>
     <form method = "POST">
         <input type="text" placeholder="ID del alumno" name="id_alumno_inscribir">
-        <select name="id_materia_inscribir">
-            <option value= 55 >55 - Sociologia 5to</option>
+       <br>
+       <?php
+        include ("../conexion.php");    
+
+        $consultaMaterias = "
+        SELECT nombre_materia, id_materia
+        FROM materias;";
+
+        $resultado = $conexion -> query($consultaMaterias);
+        echo  "<br>";
+        echo "<select name='id_materia_inscribir'>";
+            //Fila es un array asociativo al que accedo una vez por cada vuelta del while
+
+            while($fila = $resultado -> fetch_assoc()){
+                $id_materia = $fila['id_materia'];
+                $nombre_materia = $fila['nombre_materia'];
+
+                echo "<option value=$id_materia>$id_materia - $nombre_materia</option>";
+                
+            };
+
+            
+        echo "</select>";
+
         
-        </select>
-        
+
+        ?>
+
+
+        <br><br>
         <input type="submit" name="btn_inscribir_alumno" value="Inscribir alumno">
     </form>
 
@@ -90,6 +115,7 @@
         ?>
 
 </div>
+
 
 
 <!--                    ELIMINAR ALUMNO                 -->
@@ -128,7 +154,7 @@
 
 <h2>Tabla admin</h2> <br>
 <h3>Esta tabla muestra a todos los alumnos y todas sus notas como registros distintos, cuando se solucione la cuestion de acomodar las notas en una fila, aplicarlo aca</h3>
-  <div id="tabla-alumnos"></div>
+  <div id="tabla_admin"></div>
 
   <!-- Tabulator CSS (CDN) -->
   <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">

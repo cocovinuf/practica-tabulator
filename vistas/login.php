@@ -22,7 +22,7 @@
     <form method="post">
 
     <input type="text" name="usuario" placeholder="Ingrese el usuario" class="campos-login">
-    <input type="text" name="contrasena" placeholder="Ingrese la contraseña" class="campos-login"> 
+    <input type="password" name="contrasena" placeholder="Ingrese la contraseña" class="campos-login"> 
     <br><br>
     <input type="submit" name="btn_ingresar" value="Iniciar sesion" class="boton-login"> 
 

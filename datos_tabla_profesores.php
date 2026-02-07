@@ -103,27 +103,5 @@ $json_sintetizado[$indice] = array_merge($datos_unificados, $nota_clasificada);
 
 
 
-/*
-$indice = -1;
-$alumno_actual = null;
-
-foreach($json_sintetizado as $alumno){
-  foreach($alumno as $clasificacion_nota => $nota){
-
-    if()
-
-
-    if(str_contains($clasificacion_nota,'T1')){
-      
-    };
-  };
-};
-
-
-
-echo "aca va el resultado que deberia ser final:";
-print_r($json_sintetizado);
-*/
-
 
 echo json_encode($json_sintetizado);

@@ -34,16 +34,20 @@ foreach ($datos as $clave => $valor) {
     // Operador ternario: Es un if en una sola linea. Si valor es un string vacio entonces nota vale null, sino nota vale valor
     $notaSQL = ($valor === "") ? "NULL" : "'$valor'";
 
+    // Creo la consulta SQL para actuaizar una nota existente
     $update = "UPDATE notas SET valor_nota = $notaSQL
     WHERE id_inscripcion = '$id_inscripcion'
     AND trimestre_nota = '$trimestre'
     AND numero_nota = '$numeroNota'
     AND tipo_nota = '$tipoNota';";
-
+    
+    // Ejecuto la consulta SQL
     $conexion -> query($update);
 
+    // Veo si la consulta afecto a alguna fila
     if($conexion -> affected_rows === 0)
   
+      //Si la consulta afecto a cero filas me fijo si esa fila existe. Porque afectar a cero filas puede ser porque se cargo la misma nota que ya estaba antes. Me fijo entonces con un select
       $check = $conexion->query("
       SELECT 1 FROM notas
       WHERE id_inscripcion = $id_inscripcion
@@ -52,6 +56,7 @@ foreach ($datos as $clave => $valor) {
       AND tipo_nota = '$tipoNota'
     ");
 
+    //Si ese select afecto a cero filas entonces esa nota no existe, entonces la creo
     if($check -> num_rows === 0){
     
     $insert = "INSERT INTO `notas`(

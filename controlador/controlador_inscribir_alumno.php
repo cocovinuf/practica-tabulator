@@ -35,9 +35,10 @@ if(isset($_POST['btn_inscribir_alumno'])){
         </form>
         <?php
 
+    }
 
-
-
+    if(empty($_POST['id_alumno_inscribir']) OR empty($_POST['id_materia_inscribir'])){
+        echo "Ingrese todos los datos";
     }
 
 }
