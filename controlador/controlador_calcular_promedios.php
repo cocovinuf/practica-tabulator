@@ -17,3 +17,9 @@ if ($datos === null) {
   exit;
 }
 
+// Dentro de datos (que es un array asociativo), refierete al indice como "clave" y a su valor como "valor" y para cada uno de ellos haz...
+foreach($datos as $clave => $valor){
+
+ if (preg_match('/^T(\d+)N(\d+)Envio+)$/', $clave, $m))
+    
+}

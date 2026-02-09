@@ -21,14 +21,12 @@ if(!empty($_POST["btn_ingresar"])) {
             if($datos -> rol_usuario == 'Profesor' or $datos -> rol_usuario == 'Tutor'){
                 header("location:../vistas/seleccion_materia.php");}
             if($datos -> rol_usuario == 'Administrador'){
-                header("location:../vistas/home_admin.php");}else{
-                echo "Usuario o contraseña incorrectos";}
-    
-
-        }else{echo "Ingrese todos los datos";}
+                header("location:../vistas/home_admin.php");}
+                
+        }else{echo "Usuario o contraseña incorrectos";}
 
 
-    }  
-}
+    }else{echo "Ingrese todos los datos";}
+};
 
 ?>

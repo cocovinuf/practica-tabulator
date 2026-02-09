@@ -117,6 +117,19 @@
 
 </div>
 
+<!--                    ELIMINAR INSCRIPCION               -->
+<div class="caja-herramientas-alumno">
+<h4>Eliminar inscripción de alumno</h4>
+<form method="POST">
+    <input type="text" placeholder="ID del alumno" name="id_alumno_elim_insc"><br><br>
+    <input type="text" placeholder="Materia" name="id_materia_elim_insc"><br><br>
+    <input type="submit" name="btn_eliminar_inscripcion" value="Eliminar inscripción ">    
+</form>
+
+<?php
+    include "../controlador/controlador_eliminar_inscripcion.php";
+?>
+</div>
 
 
 <!--                    ELIMINAR ALUMNO                 -->
