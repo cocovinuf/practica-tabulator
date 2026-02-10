@@ -73,9 +73,24 @@
 
 </div>
 
+
+<!--                    ELIMINAR ALUMNO                 -->
+<div class="caja-herramientas-alumno">
+    <h4>Eliminar alumno de la lista</h4>
+        <form method="post" name="eliminar_alumno">
+            <label class="etiquetas-herramientas" for="dni_alumno_elim">Dni del alumno a eliminar: </label>
+            <input class="etiquetas-herramientas" type="int" placeholder="Dni" name="dni_alumno_elim"><br>
+            <input  type="submit" value="Eliminar alumno" name="btn_elim_alumno"><br><br>
+        </form>
+
+        <?php
+        include "../controlador/controlador_eliminar_alumno.php";
+        ?>
+</div>
+
 <!--                    INSCRIBIR ALUMNO                 -->
 <div class="caja-herramientas-alumno">
-    <h4>Inscribir alumno</h4>
+    <h4>Inscribir alumno a materia</h4>
     <form method = "POST">
         <input type="text" placeholder="ID del alumno" name="id_alumno_inscribir">
        <br>
@@ -119,36 +134,21 @@
 
 <!--                    ELIMINAR INSCRIPCION               -->
 <div class="caja-herramientas-alumno">
-<h4>Eliminar inscripción de alumno</h4>
-<form method="POST">
-    <input type="text" placeholder="ID del alumno" name="id_alumno_elim_insc"><br><br>
-    <input type="text" placeholder="Materia" name="id_materia_elim_insc"><br><br>
-    <input type="submit" name="btn_eliminar_inscripcion" value="Eliminar inscripción ">    
-</form>
+    <h4>Eliminar inscripción de alumno a materia</h4>
+    <form method="POST">
+        <input type="text" placeholder="ID del alumno" name="id_alumno_elim_insc"><br><br>
+        <input type="text" placeholder="Materia" name="id_materia_elim_insc"><br><br>
+        <input type="submit" name="btn_eliminar_inscripcion" value="Eliminar inscripción">    
+    </form>
 
-<?php
-    include "../controlador/controlador_eliminar_inscripcion.php";
-?>
+    <?php
+        include "../controlador/controlador_eliminar_inscripcion.php";
+    ?>
 </div>
-
-
-<!--                    ELIMINAR ALUMNO                 -->
-<div class="caja-herramientas-alumno">
-    <h4>Eliminar alumno</h4>
-        <form method="post" name="eliminar_alumno">
-            <label class="etiquetas-herramientas" for="dni_alumno_elim">Dni del alumno a eliminar: </label>
-            <input class="etiquetas-herramientas" type="int" placeholder="Dni" name="dni_alumno_elim"><br>
-            <input  type="submit" value="Eliminar alumno" name="btn_elim_alumno"><br><br>
-        </form>
-
-        <?php
-        include "../controlador/controlador_eliminar_alumno.php";
-        ?>
-</div>
+    
 <!--                    ACTIVAR/DESACTIVAR EDICION DE NOTAS                 -->
-
 <div class="caja-herramientas-alumno">
-    <h4>Edicion de notas en planillas</h4>
+    <h4>Edicion de notas en planillas para profesores y tutores</h4>
     <form>
         <select id ="seleccion_edicion_notas" onChange="cambiadorEstado()">
           <option value='"input"'>Activada</option>

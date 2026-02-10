@@ -3,6 +3,7 @@
 include("../conexion.php");
 
 if(isset($_POST['btn_eliminar_inscripcion'])){
+    
     if((!empty($_POST['id_alumno_elim_insc'])) && (!empty($_POST['id_materia_elim_insc']))){
 
         $id_alumno = $_POST['id_alumno_elim_insc'];
@@ -23,25 +24,24 @@ if(isset($_POST['btn_eliminar_inscripcion'])){
             $materia = $datos_eliminacion_inscripcion['nombre_materia'];
             
             echo "Desea eliminar a " . $nombre . " de " . $materia . "?";
-            ?>
 
+            ?>
             <form method="post">
                 <input type="hidden" name="id_alumno" value="<?php echo $id_alumno; ?>">
                 <input type="hidden" name="id_materia" value="<?php echo $id_materia; ?>">
                 <input type = "submit" value="Confirmar eliminacion" name="btn_confirmar_elim_insc">
                 <input type = "submit" value="Cancelar" name="btn_cancelar_elim_insc">
             </form>
-
             <?php
+
+
+
         }
-    }else{
-    echo "<script>mostrarMensaje('Debe cargar todos los datos del alumno a eliminar')</script>";
+    }else{echo "<script>mostrarMensaje('Debe cargar todos los datos del alumno a eliminar')</script>";}
 }
 
-echo "aca entra";
 
-if(isset($_POST['btn_cancelar_elim_insc'])){
-    
+if(isset($_POST['btn_confirmar_elim_insc'])){
     $id_alumno = $_POST['id_alumno'];
     $id_materia = $_POST['id_materia'];
 
@@ -58,11 +58,9 @@ if(isset($_POST['btn_cancelar_elim_insc'])){
     }else{
         echo "<script>mostrarMensaje('La consulta por alguna razon no se hizo')</script>";
     }
-    
+  
 }
 
-
-}
 
 
 
