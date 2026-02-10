@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../estilos/estilos_login.css" rel="stylesheet">
-    <title>S.I. ESRTIC</title>
+    <title>Planillas ESRTIC</title>
 </head>
 <body>
 
 
 <!--                    CAJA CON CAMPOS DEL LOGIN               -->
 <div class="caja-login">
-    <H1>Sistema Integrado SRTIC</H1>
+    <H1>Planillas de calificaciones ESRTIC</H1>
     <h2>Ingresar a su cuenta</h2>
 
     <?php

@@ -132,7 +132,7 @@ include "../funciones_php/funciones.php"
     
 <!--                    ACTIVAR/DESACTIVAR EDICION DE NOTAS                 -->
 <div class="caja-herramientas-alumno">
-    <h4>Edicion de notas en planillas para profesores y tutores</h4>
+    <h4>Edicion de notas en planillas para profesores y tutores (AUN NO FUNCIONA)</h4>
     <form>
         <select id ="seleccion_edicion_notas" onChange="cambiadorEstado()">
           <option value='"input"'>Activada</option>
