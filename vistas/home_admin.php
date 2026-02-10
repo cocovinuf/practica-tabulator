@@ -20,7 +20,11 @@
         <title>Administrador</title>
     </head>
     <body>
-        
+
+<?php
+include "../conexion.php";
+include "../funciones_php/funciones.php"
+?>
     <h1>Administrador: <?php echo $_SESSION["nombre"]; ?></h1>
 
     <h2>Herramientas</h2>
@@ -92,35 +96,12 @@
 <div class="caja-herramientas-alumno">
     <h4>Inscribir alumno a materia</h4>
     <form method = "POST">
-        <input type="text" placeholder="ID del alumno" name="id_alumno_inscribir">
+        <input type="text" placeholder="DNI del alumno" name="dni_alumno_inscribir">
        <br>
+
        <?php
-        include ("../conexion.php");    
-
-        $consultaMaterias = "
-        SELECT nombre_materia, id_materia
-        FROM materias;";
-
-        $resultado = $conexion -> query($consultaMaterias);
-        echo  "<br>";
-        echo "<select name='id_materia_inscribir'>";
-            //Fila es un array asociativo al que accedo una vez por cada vuelta del while
-
-            while($fila = $resultado -> fetch_assoc()){
-                $id_materia = $fila['id_materia'];
-                $nombre_materia = $fila['nombre_materia'];
-
-                echo "<option value=$id_materia>$id_materia - $nombre_materia</option>";
-                
-            };
-
-            
-        echo "</select>";
-
-        
-
-        ?>
-
+       selectorMaterias ($conexion , 'id_materia_inscribir');
+       ?>
 
         <br><br>
         <input type="submit" name="btn_inscribir_alumno" value="Inscribir alumno">
@@ -136,8 +117,11 @@
 <div class="caja-herramientas-alumno">
     <h4>Eliminar inscripción de alumno a materia</h4>
     <form method="POST">
-        <input type="text" placeholder="ID del alumno" name="id_alumno_elim_insc"><br><br>
-        <input type="text" placeholder="Materia" name="id_materia_elim_insc"><br><br>
+        <input type="text" placeholder="DNI del alumno" name="dni_alumno_elim_insc"><br>
+        <?php
+        selectorMaterias ($conexion , 'id_materia_elim_insc'); 
+        ?>
+        <br><br>
         <input type="submit" name="btn_eliminar_inscripcion" value="Eliminar inscripción">    
     </form>
 

@@ -4,18 +4,18 @@ include ("../conexion.php");
 
 if(isset($_POST['btn_inscribir_alumno'])){
 
-    if((!empty($_POST['id_alumno_inscribir'])) && (!empty($_POST['id_materia_inscribir']))){
-        $id_alumno = $_POST['id_alumno_inscribir'];
+    if((!empty($_POST['dni_alumno_inscribir'])) && (!empty($_POST['id_materia_inscribir']))){
+        $dni_alumno = $_POST['dni_alumno_inscribir'];
         $id_materia = $_POST['id_materia_inscribir'];
     
         $consulta_confirmacion = $conexion -> query("
         SELECT 
-        a.nombre_alumno,
         a.id_alumno,
+        a.nombre_alumno,
         m.nombre_materia
         FROM alumnos a, materias m
         WHERE
-        id_alumno = $id_alumno
+        dni_alumno = $dni_alumno
         AND id_materia = $id_materia   
         ;");
 
@@ -25,6 +25,7 @@ if(isset($_POST['btn_inscribir_alumno'])){
             $fila = $consulta_confirmacion -> fetch_assoc();
             $nombreA = $fila['nombre_alumno'];
             $nombreM = $fila['nombre_materia'];
+            $id_alumno = $fila['id_alumno'];
 
             echo "Desea inscribir a " , $nombreA , " en  " , $nombreM, "?";
 
@@ -46,7 +47,7 @@ if(isset($_POST['btn_inscribir_alumno'])){
     
     }
 
-    if(empty($_POST['id_alumno_inscribir']) OR empty($_POST['id_materia_inscribir'])){
+    if(empty($_POST['dni_alumno_inscribir']) OR empty($_POST['id_materia_inscribir'])){
         echo "<script>mostrarMensaje('Ingrese todos los datos necesarios')</script>";
     }
 

@@ -19,6 +19,7 @@ var table = new Tabulator("#tabla_admin", {
             {title:"Dni", field:"dni_alumno", headerFilter:"input"},
             {title:"Año Alumno", field:"ano_alumno", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
             {title:"Año Materia", field:"ano_materia", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
+            {title:"ID Materia", field:"id_materia", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
             {title:"Materia", field:"nombre_materia", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
             {title:"Sede", field:"nombre_sede", headerFilter:"list",headerFilterParams:{valuesLookup:true, clearable:true}},
             ],

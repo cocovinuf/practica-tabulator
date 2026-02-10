@@ -12,6 +12,8 @@ SELECT
   a.ano_alumno,
   s.nombre_sede,
   m.nombre_materia,
+  m.ano_materia,
+  m.id_materia,
   n.numero_nota,
   n.valor_nota
 FROM alumnos a

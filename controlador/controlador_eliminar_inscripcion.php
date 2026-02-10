@@ -4,22 +4,24 @@ include("../conexion.php");
 
 if(isset($_POST['btn_eliminar_inscripcion'])){
     
-    if((!empty($_POST['id_alumno_elim_insc'])) && (!empty($_POST['id_materia_elim_insc']))){
+    if((!empty($_POST['dni_alumno_elim_insc'])) && (!empty($_POST['id_materia_elim_insc']))){
 
-        $id_alumno = $_POST['id_alumno_elim_insc'];
+        $dni_alumno = $_POST['dni_alumno_elim_insc'];
         $id_materia = $_POST['id_materia_elim_insc'];
         
         $consulta = $conexion->query(
         "SELECT
+            a.id_alumno,
             a.nombre_alumno, 
             m.nombre_materia 
         FROM (alumnos a, materias m) 
-        WHERE id_alumno = '$id_alumno'
+        WHERE dni_alumno = '$dni_alumno'
         AND id_materia = '$id_materia'
         ;");
 
         if($consulta && $consulta -> num_rows > 0){
             $datos_eliminacion_inscripcion = $consulta -> fetch_assoc();
+            $id_alumno = $datos_eliminacion_inscripcion['id_alumno'];
             $nombre = $datos_eliminacion_inscripcion['nombre_alumno'];
             $materia = $datos_eliminacion_inscripcion['nombre_materia'];
             
