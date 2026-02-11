@@ -76,7 +76,7 @@ table.on("cellEdited", function(cell){
     console.log('Guardado de notas: ' + resp);
     });
 
-
+/*
     fetch("../controlador/controlador_calcular_promedios.php", {
     method: "POST",
     headers: {
@@ -88,7 +88,7 @@ table.on("cellEdited", function(cell){
     .then(resp => {
     console.log('Calculo de promedio: ' + resp);
     });
-
+*/  
 
 
 });

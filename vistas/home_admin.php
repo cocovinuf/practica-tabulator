@@ -9,25 +9,25 @@
     
 ?>
 <!--                    PARTE HTML                -->
-<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="../javascript/main.js"></script>
-        <script src='../javascript/mostrar_mensaje.js'></script>
-        <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
-        <title>Administrador</title>
-    </head>
-    <body>
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="../javascript/main.js"></script>
+            <script src='../javascript/mostrar_mensaje.js'></script>
+            <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
+            <title>Administrador</title>
+        </head>
+        <body>
 
-<?php
-include "../conexion.php";
-include "../funciones_php/funciones.php"
-?>
-    <h1>Administrador: <?php echo $_SESSION["nombre"]; ?></h1>
+    <?php
+    include "../conexion.php";
+    include "../funciones_php/funciones.php"
+    ?>
+        <h1>Administrador: <?php echo $_SESSION["nombre"]; ?></h1>
 
-    <h2>Herramientas</h2>
+        <h2>Herramientas</h2>
 
 <!--                    AGREGAR ALUMNO                  -->
 <div class="caja-herramientas-alumno">
