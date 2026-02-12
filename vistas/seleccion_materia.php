@@ -50,7 +50,7 @@
     
 
     <form method="POST">
-        <input type="submit" name="btn_solicitud_cambiar_contrasena" value="Quiero cambiar mi contraseña" > <br><br>
+        <input type="submit" name="btn_solicitud_cambiar_contrasena" value="Quiero cambiar mi contraseña" class="boton-cambiar-contrasena" > <br><br>
     </form>
     
     

@@ -34,3 +34,12 @@
     padding: 10px;
     border-radius: 5px;
 }
+
+.boton-cambiar-contrasena{
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: rgb(47, 0, 255);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

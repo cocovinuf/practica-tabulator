@@ -24,9 +24,11 @@ var table = new Tabulator("#tabla_profesores", {
             {title:"Nota 1", field:"T1N1Envio", editor: "input"},
             {title:"Nota 2", field:"T1N2Envio", editor:"input"},
             {title:"Nota 3", field:"T1N3Envio", editor:"input"},
-            {title:"Con", field:"T1N1Concepto", editor:"input"},
+            {title:"Concepto", field:"T1N1Concepto", editor:"input",headerVertical:true},
             {title:"Promedio", field:"T1N2Promedio",headerVertical:true},
-            {title:"Rec", field:"T1N3Recuperatorio", editor:"input"},
+            {title:"Recuperatorio", field:"T1N3Recuperatorio", editor:"input",headerVertical:true},
+            // T1N4MAX Se refiere al maximo entre el promedio y el recuperatorio, es decir la nota final de ese trimestre
+            {title:"Nota Trimestral", field:"T1N4MAX", editor:"",headerVertical:true}
             ],
         },
         
@@ -34,9 +36,10 @@ var table = new Tabulator("#tabla_profesores", {
             {title:"Nota 4", field:"T2N4Envio", editor:"input"},
             {title:"Nota 5", field:"T2N5Envio", editor:"input"},
             {title:"Nota 6", field:"T2N6Envio", editor:"input"},
-            {title:"Con", field:"T2N1Concepto", editor:"input"},
+            {title:"Concepto", field:"T2N1Concepto", editor:"input",headerVertical:true},
             {title:"Promedio", field:"T2N2Promedio",headerVertical:true},
-            {title:"Rec", field:"T2N3Recuperatorio", editor:"input"},
+            {title:"Recuperatorio", field:"T2N3Recuperatorio", editor:"input",headerVertical:true},
+            {title:"Nota Trimestral", field:"T2N4MAX", editor:"",headerVertical:true}
             ],
         },
         
@@ -44,9 +47,10 @@ var table = new Tabulator("#tabla_profesores", {
             {title:"Nota 7", field:"T3N7Envio", editor:"input"},
             {title:"Nota 8", field:"T3N8Envio", editor:"input"},
             {title:"Nota 9", field:"T3N9Envio", editor:"input"},
-            {title:"Con", field:"T3N1Concepto", editor:"input"},
+            {title:"Concepto", field:"T3N1Concepto", editor:"input",headerVertical:true},
             {title:"Promedio", field:"T3N2Promedio",headerVertical:true},
-            {title:"Rec", field:"T3N3Recuperatorio", editor:"input"},
+            {title:"Recuperatorio", field:"T3N3Recuperatorio", editor:"input",headerVertical:true},
+            {title:"Nota Trimestral", field:"T3N4MAX", editor:"",headerVertical:true}
         ],
         },
         {title: "Prom. Trim.", field:"T4N1PromTrim",headerVertical:true},
@@ -66,9 +70,7 @@ table.on("cellEdited", function(cell){
     
     fetch("../controlador/controlador_guardar_notas.php", {
     method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify(fila)
     })
     .then(res => res.json())
@@ -76,19 +78,9 @@ table.on("cellEdited", function(cell){
     console.log('Guardado de notas: ' + resp);
     });
 
-/*
-    fetch("../controlador/controlador_calcular_promedios.php", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(fila)
-    })
-    .then(res => res.json())
-    .then(resp => {
-    console.log('Calculo de promedio: ' + resp);
-    });
-*/  
+    //location.reload();
+
+  
 
 
 });
