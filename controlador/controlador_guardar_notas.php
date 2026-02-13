@@ -34,49 +34,64 @@ foreach ($datos as $clave => $valor) {
     $tipoNota   = $m[3];
 
     // Operador ternario: Es un if en una sola linea. Si valor es un string vacio entonces nota vale null, sino nota vale valor
-    $notaSQL = ($valor === "") ? "NULL" : "'$valor'";
+    $notaSQL = ($valor === "") ? NULL : "'$valor'";
 
-    // Creo la consulta SQL para actuaizar una nota existente
-    $update = "UPDATE notas SET valor_nota = $notaSQL
-    WHERE id_inscripcion = '$id_inscripcion'
-    AND trimestre_nota = '$trimestre'
-    AND numero_nota = '$numeroNota'
-    AND tipo_nota = '$tipoNota';";
-    
-    // Ejecuto la consulta SQL
-    $conexion -> query($update);
-
-    // Veo si la consulta afecto a alguna fila
-    if($conexion -> affected_rows === 0){
-  
-      //Si la consulta afecto a cero filas me fijo si esa fila existe. Porque afectar a cero filas puede ser porque se cargo la misma nota que ya estaba antes o porque esa nota no existe. Me fijo entonces con un select
-      $check = $conexion->query("
-      SELECT 1 FROM notas
+    if($notaSQL === NULL){
+      $conexion -> query("
+      DELETE FROM notas 
       WHERE id_inscripcion = $id_inscripcion
       AND trimestre_nota = $trimestre
       AND numero_nota = $numeroNota
-      AND tipo_nota = '$tipoNota'
+      AND tipo_nota NOT IN ('Promedio', 'MAX')
       ");
-    
-      //Si ese select afecto a cero filas entonces esa nota no existe, por lo que no puedo hacer un UPDATE, necesito usar un INSERT el cual CREA la nota, entonces la creo:
-      if($check -> num_rows === 0){
+    }else{
+      // Creo la consulta SQL para actuaizar una nota existente
+      $update = "UPDATE notas SET valor_nota = $notaSQL
+      WHERE id_inscripcion = '$id_inscripcion'
+      AND trimestre_nota = '$trimestre'
+      AND numero_nota = '$numeroNota'
+      AND tipo_nota = '$tipoNota';";
       
-      $insert = "INSERT INTO `notas`(
-      `id_inscripcion`, 
-      `trimestre_nota`, 
-      `numero_nota`, 
-      `valor_nota`, 
-      `tipo_nota`) 
-      VALUES (
-      $id_inscripcion,
-      $trimestre,
-      $numeroNota,
-      $notaSQL,
-      '$tipoNota');";
+      // Ejecuto la consulta SQL
+      $conexion -> query($update);
 
-      $conexion -> query($insert);
+      // Veo si la consulta afecto a alguna fila
+      if($conexion -> affected_rows === 0){
+    
+        //Si la consulta afecto a cero filas me fijo si esa fila existe. Porque afectar a cero filas puede ser porque se cargo la misma nota que ya estaba antes o porque esa nota no existe. Me fijo entonces con un select
+        if($notaSQL != NULL){
+
+          $check = $conexion->query("
+          SELECT 1 FROM notas
+          WHERE id_inscripcion = $id_inscripcion
+          AND trimestre_nota = $trimestre
+          AND numero_nota = $numeroNota
+          AND tipo_nota = '$tipoNota'
+          ");
+        
+          //Si ese select afecto a cero filas entonces esa nota no existe, por lo que no puedo hacer un UPDATE, necesito usar un INSERT el cual CREA la nota, entonces la creo:
+          if($check -> num_rows === 0){
+            $insert = "INSERT INTO `notas`(
+            `id_inscripcion`, 
+            `trimestre_nota`, 
+            `numero_nota`, 
+            `valor_nota`, 
+            `tipo_nota`) 
+            VALUES (
+            $id_inscripcion,
+            $trimestre,
+            $numeroNota,
+            $notaSQL,
+            '$tipoNota');";
+            $conexion -> query($insert);
+          }
+        }
       }
+
     }
+
+
+    
 
   }
 
@@ -89,13 +104,9 @@ foreach ($datos as $clave => $valor) {
 
 
 $sumatoriaNotasT1 = 0;
-$cantNotasT1 = 0;
+$sumatoriaNotasT2 = 0;
+$sumatoriaNotasT3 = 0;
 
-$sumatoriaNotasT2= 0;
-$cantNotasT2 = 0;
-
-$sumatoriaNotasT3=0;
-$cantNotasT3 = 0;
 
 // Tomo todas las notas del alumno en cada vuelta
 $resultado = $conexion -> query("
@@ -117,26 +128,23 @@ while( $fila = $resultado->fetch_assoc()){
   switch(true){
     case ($fila['trimestre_nota'] == 1 && ($fila['tipo_nota'] == 'Envio' OR $fila['tipo_nota'] == 'Concepto')):
       $sumatoriaNotasT1 = $sumatoriaNotasT1 + $fila['valor_nota'];
-      $cantNotasT1++;
       break;
     
     case($fila['trimestre_nota'] == 2 && ($fila['tipo_nota'] == 'Envio' OR $fila['tipo_nota'] == 'Concepto')):
       $sumatoriaNotasT2 = $sumatoriaNotasT2 + $fila['valor_nota'];
-      $cantNotasT2++;
       break;
 
     case($fila['trimestre_nota'] == 3 && ($fila['tipo_nota'] == 'Envio' OR $fila['tipo_nota'] == 'Concepto')):
       $sumatoriaNotasT3 = $sumatoriaNotasT3 + $fila['valor_nota'];
-      $cantNotasT3++;
       break;
   }
 
 }
 
 //Usando las sumatorias hago el calculo de promedios
-$promedioT1 = $cantNotasT1 > 0 ? $sumatoriaNotasT1 / $cantNotasT1 : NULL;
-$promedioT2 = $cantNotasT2 > 0 ? $sumatoriaNotasT2 / $cantNotasT2 : NULL; 
-$promedioT3 = $cantNotasT3 > 0 ? $sumatoriaNotasT3 / $cantNotasT3 : NULL;  
+$promedioT1 = $sumatoriaNotasT1 / 4;
+$promedioT2 = $sumatoriaNotasT2 / 4;
+$promedioT3 = $sumatoriaNotasT3 / 4;
 
 // Uso un for para escribir las consultas una vez y se haga para todos los trimestres
 for ($i=1; $i < 4 ; $i++) { 
@@ -172,41 +180,52 @@ for ($i=1; $i < 4 ; $i++) {
     VALUES('Promedio', $nota , $i , 2, $id_inscripcion);
   ");
   }
-
-  // Por logica de negocio el recuperatorio debe reemplazar al promedio si es mayor. Entonces leemos y comparamos promedio y recuperatorio:
-
-
-  for ($i=1; $i < 4 ; $i++) { 
-
-    $resultado = $consulta = $conexion -> query ("
-    SELECT MAX(valor_nota) 
-    FROM notas
-    WHERE id_inscripcion = $id_inscripcion
-    AND trimestre_nota = $i
-    AND (tipo_nota = 'Promedio'
-    OR tipo_nota = 'Recuperatorio')
-    ");
-
-
-    if($resultado -> num_rows === 0){
-      $conexion -> query("
-      INSERT INTO `notas` (`id_inscripcion` , `trimestre_nota` , `numero_nota` , `valor_nota`, `tipo_nota`)
-      VALUES ($id_inscripcion, $i, 4, "NULL", 'MAX')
-      ")
-    }
-      
-    $update = $conexion -> query("
-      UPDATE notas SET 'valor_nota' = $resultado
-
-    ");
-
-        
-      }
-
+  
 }
 
 
+// Por logica de negocio se debe conocer cual es mayor entre promedios y recuperatorios por lo que:
+  for ($i = 1; $i <= 3; $i++) {
 
+    // Obtengo el máximo entre Promedio y Recuperatorio
+    $resultado = $conexion->query("
+        SELECT MAX(valor_nota) AS maximo
+        FROM notas
+        WHERE id_inscripcion = $id_inscripcion
+        AND trimestre_nota = $i
+        AND tipo_nota IN ('Promedio','Recuperatorio')
+    ");
+
+    $fila = $resultado->fetch_assoc();
+    $max = $fila['maximo']; // puede ser null
+
+    // Verifico si ya existe un registro MAX
+    $check = $conexion->query("
+        SELECT id_nota
+        FROM notas
+        WHERE id_inscripcion = $id_inscripcion
+        AND trimestre_nota = $i
+        AND tipo_nota = 'MAX'
+    ");
+
+    // Si existe un registro entonces lo actualizo y si no existe lo creo
+    if ($check->num_rows > 0) {
+      $conexion->query("
+          UPDATE notas
+          SET valor_nota = " . ($max !== null ? $max : "NULL") . "
+          WHERE id_inscripcion = $id_inscripcion
+          AND trimestre_nota = $i
+          AND tipo_nota = 'MAX'
+      ");
+
+    } else {
+    $conexion->query("
+        INSERT INTO notas 
+        (id_inscripcion, trimestre_nota, numero_nota, valor_nota, tipo_nota)
+        VALUES ($id_inscripcion,$i,4," . ($max !== null ? $max : "NULL") . ",'MAX')
+    ");
+    }
+}
 
 
 
