@@ -4,6 +4,7 @@
 
 var table = new Tabulator("#tabla_profesores", {
   layout: "fitDataTable",
+  validationMode: "blocking",
   ajaxURL: "../datos_tabla_profesores.php",
   ajaxCache: false,
   pagination: "local",
@@ -39,7 +40,12 @@ var table = new Tabulator("#tabla_profesores", {
     {
       title: "Primer Trimestre",
       columns: [
-        { title: "Nota 1", field: "T1N1Envio", editor: "input" },
+        {
+          title: "Nota 1",
+          field: "T1N1Envio",
+          editor: "input",
+          validator: "numeric",
+        },
         { title: "Nota 2", field: "T1N2Envio", editor: "input" },
         { title: "Nota 3", field: "T1N3Envio", editor: "input" },
         {
