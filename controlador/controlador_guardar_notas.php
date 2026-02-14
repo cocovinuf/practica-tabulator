@@ -17,7 +17,7 @@ if ($datos === null) {
   exit;
 }
 
-////////////////////////////////////////////////// GUARDADO DE NOTAS
+////////////////                       GUARDADO DE NOTAS
 
 $id_inscripcion = $datos['id_inscripcion'];
 
@@ -42,7 +42,7 @@ foreach ($datos as $clave => $valor) {
       WHERE id_inscripcion = $id_inscripcion
       AND trimestre_nota = $trimestre
       AND numero_nota = $numeroNota
-      AND tipo_nota NOT IN ('Promedio', 'MAX')
+      AND tipo_nota NOT IN ('Promedio', 'NotaTrimestral')
       ");
     }else{
       // Creo la consulta SQL para actuaizar una nota existente
@@ -184,6 +184,10 @@ for ($i=1; $i < 4 ; $i++) {
 }
 
 
+
+
+
+/////////////////////////////       DETERMINACION DE MAXIMOS
 // Por logica de negocio se debe conocer cual es mayor entre promedios y recuperatorios por lo que:
   for ($i = 1; $i <= 3; $i++) {
 
@@ -197,35 +201,137 @@ for ($i=1; $i < 4 ; $i++) {
     ");
 
     $fila = $resultado->fetch_assoc();
-    $max = $fila['maximo']; // puede ser null
+    $notaTrimestral = $fila['maximo']; // puede ser null
 
-    // Verifico si ya existe un registro MAX
+    // Verifico si ya existe un registro NotaTrimestral
     $check = $conexion->query("
         SELECT id_nota
         FROM notas
         WHERE id_inscripcion = $id_inscripcion
         AND trimestre_nota = $i
-        AND tipo_nota = 'MAX'
+        AND tipo_nota = 'NotaTrimestral'
     ");
 
     // Si existe un registro entonces lo actualizo y si no existe lo creo
     if ($check->num_rows > 0) {
       $conexion->query("
           UPDATE notas
-          SET valor_nota = " . ($max !== null ? $max : "NULL") . "
+          SET valor_nota = " . ($notaTrimestral !== null ? $notaTrimestral : "NULL") . "
           WHERE id_inscripcion = $id_inscripcion
           AND trimestre_nota = $i
-          AND tipo_nota = 'MAX'
+          AND tipo_nota = 'NotaTrimestral'
       ");
 
     } else {
     $conexion->query("
         INSERT INTO notas 
         (id_inscripcion, trimestre_nota, numero_nota, valor_nota, tipo_nota)
-        VALUES ($id_inscripcion,$i,4," . ($max !== null ? $max : "NULL") . ",'MAX')
+        VALUES ($id_inscripcion,$i,4," . ($notaTrimestral !== null ? $notaTrimestral : "NULL") . ",'NotaTrimestral')
     ");
     }
 }
+
+
+
+
+
+
+///////////////////////  DETERMINACION DE PROMEDIO TRIMESTRAL       
+
+$resultado = $conexion -> query("
+  SELECT AVG (valor_nota) AS promedioDeTrimestres FROM notas 
+  WHERE id_inscripcion = $id_inscripcion
+  AND tipo_nota = 'NotaTrimestral'
+");
+
+$fila = $resultado -> fetch_assoc();
+$promedioDeTrimestres = $fila['promedioDeTrimestres'];
+
+
+$check = $conexion -> query("
+  SELECT valor_nota 
+  FROM notas
+  WHERE id_inscripcion = $id_inscripcion
+  AND tipo_nota = 'PromTrim'
+");
+
+if($check -> num_rows > 0){
+  $conexion -> query("
+    UPDATE notas SET valor_nota = $promedioDeTrimestres
+    WHERE id_inscripcion = $id_inscripcion
+    AND tipo_nota = 'PromTrim'
+    AND trimestre_nota = 4
+    AND numero_nota = 1
+  ");
+}else{
+  $conexion -> query("
+    INSERT INTO `notas` (`id_inscripcion`, `valor_nota`, `tipo_nota`, `trimestre_nota`, `numero_nota`)
+    VALUES ($id_inscripcion, $promedioDeTrimestres, 'PromTrim', 4, 1)
+");
+}
+
+
+
+//////////            DETERMINACION DE CALIFICACION DEFINITIVA Y ESTADO
+
+// Vemos el promedio de todos los trimestres, si es mayor o igual a 6 entonces la calificacion definitiva es esa
+$lectura = $conexion -> query("
+  SELECT valor_nota 
+  FROM notas
+  WHERE id_inscripcion = $id_inscripcion
+  AND tipo_nota = 'PromTrim'
+  AND trimestre_nota = 4
+  AND numero_nota = 1
+");
+
+$fila = $lectura -> fetch_assoc();
+$promedioTrimestral = $fila['valor_nota'];
+
+if($promedioTrimestral >= 6){
+  $check = $conexion -> query("
+  SELECT valor_nota 
+  FROM notas
+  WHERE id_inscripcion = $id_inscripcion
+  AND tipo_nota = 'CalifDef'
+  ");
+
+  if($check -> num_rows >0){
+    $conexion -> query("
+    UPDATE notas SET valor_nota = $promedioTrimestral
+    WHERE id_inscripcion = $id_inscripcion
+    AND tipo_nota = 'CalifDef'
+    AND trimestre_nota = 4
+    AND numero_nota = 5
+    ");
+  }else{
+    $conexion -> query("
+    INSERT INTO `notas` (`id_inscripcion`, `valor_nota`, `tipo_nota`, `trimestre_nota`, `numero_nota`)
+    VALUES ($id_inscripcion, $promedioTrimestral, 'CalifDef', 4, 5)
+  ");
+  }
+
+}
+
+
+
+// Si el promedio de todos los trimestres da menos de 6 entonces...
+
+if($promedioTrimestral < 6){
+      
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

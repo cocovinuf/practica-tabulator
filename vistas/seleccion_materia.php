@@ -22,6 +22,7 @@
 
 <h2>Bienvenid@, <?php echo $_SESSION["nombre"]; ?></h2>
 
+
 <h3>Materias:</h3>
 <!--                    CAJA DEL SELECTOR DE MATERIAS                 -->
 <div class="caja-selector-materias">

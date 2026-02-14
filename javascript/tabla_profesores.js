@@ -46,12 +46,23 @@ var table = new Tabulator("#tabla_profesores", {
           editor: "input",
           validator: "numeric",
         },
-        { title: "Nota 2", field: "T1N2Envio", editor: "input" },
-        { title: "Nota 3", field: "T1N3Envio", editor: "input" },
+        {
+          title: "Nota 2",
+          field: "T1N2Envio",
+          editor: "input",
+          validator: "numeric",
+        },
+        {
+          title: "Nota 3",
+          field: "T1N3Envio",
+          editor: "input",
+          validator: "numeric",
+        },
         {
           title: "Concepto",
           field: "T1N1Concepto",
           editor: "input",
+          validator: "numeric",
           headerVertical: true,
         },
 
@@ -79,13 +90,14 @@ var table = new Tabulator("#tabla_profesores", {
           title: "Recuperatorio",
           field: "T1N3Recuperatorio",
           editor: "input",
+          validator: "numeric",
           headerVertical: true,
         },
-        // T1N4MAX Se refiere al maximo entre el promedio y el recuperatorio, es decir la nota final de ese trimestre
+        // T1N4NotaTrimestral Se refiere al maximo entre el promedio y el recuperatorio, es decir la nota final de ese trimestre
 
         {
           title: "Nota Trimestral",
-          field: "T1N4MAX",
+          field: "T1N4NotaTrimestral",
           editor: "",
           headerVertical: true,
           formatter: function (cell) {
@@ -109,14 +121,30 @@ var table = new Tabulator("#tabla_profesores", {
     {
       title: "Segundo Trimestre",
       columns: [
-        { title: "Nota 4", field: "T2N4Envio", editor: "input" },
-        { title: "Nota 5", field: "T2N5Envio", editor: "input" },
-        { title: "Nota 6", field: "T2N6Envio", editor: "input" },
+        {
+          title: "Nota 4",
+          field: "T2N4Envio",
+          editor: "input",
+          validator: "numeric",
+        },
+        {
+          title: "Nota 5",
+          field: "T2N5Envio",
+          editor: "input",
+          validator: "numeric",
+        },
+        {
+          title: "Nota 6",
+          field: "T2N6Envio",
+          editor: "input",
+          validator: "numeric",
+        },
         {
           title: "Concepto",
           field: "T2N1Concepto",
           editor: "input",
           headerVertical: true,
+          validator: "numeric",
         },
 
         {
@@ -143,12 +171,13 @@ var table = new Tabulator("#tabla_profesores", {
           title: "Recuperatorio",
           field: "T2N3Recuperatorio",
           editor: "input",
+          validator: "numeric",
           headerVertical: true,
         },
 
         {
           title: "Nota Trimestral",
-          field: "T2N4MAX",
+          field: "T2N4NotaTrimestral",
           editor: "",
           headerVertical: true,
           formatter: function (cell) {
@@ -172,13 +201,29 @@ var table = new Tabulator("#tabla_profesores", {
     {
       title: "Tercer Trimestre",
       columns: [
-        { title: "Nota 7", field: "T3N7Envio", editor: "input" },
-        { title: "Nota 8", field: "T3N8Envio", editor: "input" },
-        { title: "Nota 9", field: "T3N9Envio", editor: "input" },
+        {
+          title: "Nota 7",
+          field: "T3N7Envio",
+          editor: "input",
+          validator: "numeric",
+        },
+        {
+          title: "Nota 8",
+          field: "T3N8Envio",
+          editor: "input",
+          validator: "numeric",
+        },
+        {
+          title: "Nota 9",
+          field: "T3N9Envio",
+          editor: "input",
+          validator: "numeric",
+        },
         {
           title: "Concepto",
           field: "T3N1Concepto",
           editor: "input",
+          validator: "numeric",
           headerVertical: true,
         },
 
@@ -206,12 +251,13 @@ var table = new Tabulator("#tabla_profesores", {
           title: "Recuperatorio",
           field: "T3N3Recuperatorio",
           editor: "input",
+          validator: "numeric",
           headerVertical: true,
         },
 
         {
           title: "Nota Trimestral",
-          field: "T3N4MAX",
+          field: "T3N4NotaTrimestral",
           editor: "",
           headerVertical: true,
           formatter: function (cell) {
@@ -253,12 +299,14 @@ var table = new Tabulator("#tabla_profesores", {
     {
       title: "DIC",
       field: "T4N2Diciembre",
+      validator: "numeric",
       headerVertical: true,
       editor: "input",
     },
     {
       title: "FEB",
       field: "T4N3Febrero",
+      validator: "numeric",
       headerVertical: true,
       editor: "input",
     },
