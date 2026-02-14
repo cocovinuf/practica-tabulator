@@ -329,26 +329,6 @@ var table = new Tabulator("#tabla_profesores", {
         return value;
       },
     },
-
-    {
-      title: "Estado",
-      field: "T4N6Estado",
-      headerVertical: true,
-      formatter: function (cell) {
-        let value = cell.getValue();
-
-        if (
-          value === 0.0 ||
-          value === "0.00" ||
-          value === null ||
-          value === undefined
-        ) {
-          return "";
-        }
-
-        return value;
-      },
-    },
   ],
 });
 
@@ -364,8 +344,8 @@ table.on("cellEdited", function (cell) {
   })
     .then((res) => res.json())
     .then((resp) => {
-      console.log("Guardado de notas: " + resp);
+      console.log(resp);
     });
 
-  //location.reload();
+  location.reload();
 });

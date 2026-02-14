@@ -274,67 +274,124 @@ if($check -> num_rows > 0){
 
 //////////            DETERMINACION DE CALIFICACION DEFINITIVA Y ESTADO
 
-// Vemos el promedio de todos los trimestres, si es mayor o igual a 6 entonces la calificacion definitiva es esa
-$lectura = $conexion -> query("
-  SELECT valor_nota 
-  FROM notas
-  WHERE id_inscripcion = $id_inscripcion
-  AND tipo_nota = 'PromTrim'
-  AND trimestre_nota = 4
-  AND numero_nota = 1
+
+/* 
+
+Reglas:
+
+Orden de prioridad:
+
+PromTrim
+
+Diciembre
+
+Febrero
+
+
+
+
+Lógica:
+
+La primera que llegue a 6 o más → gana y se termina la evaluación.
+
+Si ninguna llega a 6 → se toma la mayor de las tres.
+
+Si una ya llegó a 6 y otra posterior es más alta → se ignora la posterior.
+
+*/
+
+
+
+
+
+// ----- LECTURAS -----
+
+$lecturaPromTrim = $conexion -> query("
+SELECT valor_nota
+FROM notas
+WHERE id_inscripcion = $id_inscripcion
+AND tipo_nota = 'PromTrim'
+AND trimestre_nota = 4
+AND numero_nota = 1
 ");
+$fila = $lecturaPromTrim -> fetch_assoc();
+$promTrim = ($fila && $fila['valor_nota'] !== null && $fila['valor_nota'] !== '') 
+    ? (float)$fila['valor_nota'] 
+    : null;
 
-$fila = $lectura -> fetch_assoc();
-$promedioTrimestral = $fila['valor_nota'];
 
-if($promedioTrimestral >= 6){
-  $check = $conexion -> query("
-  SELECT valor_nota 
-  FROM notas
+$lecturaDiciembre = $conexion -> query("
+SELECT valor_nota
+FROM notas
+WHERE id_inscripcion = $id_inscripcion
+AND tipo_nota = 'Diciembre'
+AND trimestre_nota = 4
+AND numero_nota = 2
+");
+$fila = $lecturaDiciembre -> fetch_assoc();
+$diciembre = ($fila && $fila['valor_nota'] !== null && $fila['valor_nota'] !== '') 
+    ? (float)$fila['valor_nota'] 
+    : null;
+
+
+$lecturaFebrero = $conexion -> query("
+SELECT valor_nota
+FROM notas
+WHERE id_inscripcion = $id_inscripcion
+AND tipo_nota = 'Febrero'
+AND trimestre_nota = 4
+AND numero_nota = 3
+");
+$fila = $lecturaFebrero -> fetch_assoc();
+$febrero = ($fila && $fila['valor_nota'] !== null && $fila['valor_nota'] !== '') 
+    ? (float)$fila['valor_nota'] 
+    : null;
+
+
+// ----- LÓGICA DEFINITIVA -----
+
+if($promTrim !== null && $promTrim >= 6){
+
+    $calificacion = $promTrim;
+
+} elseif($diciembre !== null && $diciembre >= 6){
+
+    $calificacion = $diciembre;
+
+} elseif($febrero !== null && $febrero >= 6){
+
+    $calificacion = $febrero;
+
+} else {
+
+    // Ninguna llegó a 6 → tomar la mayor
+    $valores = array_filter([$promTrim, $diciembre, $febrero], function($v){
+        return $v !== null;
+    });
+
+    $calificacion = !empty($valores) ? max($valores) : null;
+}
+
+
+// ----- UPDATE / INSERT -----
+
+$conexion -> query("
+  UPDATE notas SET valor_nota = $calificacion
   WHERE id_inscripcion = $id_inscripcion
   AND tipo_nota = 'CalifDef'
+  AND trimestre_nota = 4
+  AND numero_nota = 5
+");
+
+if($conexion->affected_rows == 0){
+  $conexion -> query("
+    INSERT INTO notas (`id_inscripcion`,`valor_nota`,`tipo_nota`,`trimestre_nota`,`numero_nota`)
+    VALUES ($id_inscripcion, $calificacion, 'CalifDef', 4, 5);
   ");
-
-  if($check -> num_rows >0){
-    $conexion -> query("
-    UPDATE notas SET valor_nota = $promedioTrimestral
-    WHERE id_inscripcion = $id_inscripcion
-    AND tipo_nota = 'CalifDef'
-    AND trimestre_nota = 4
-    AND numero_nota = 5
-    ");
-  }else{
-    $conexion -> query("
-    INSERT INTO `notas` (`id_inscripcion`, `valor_nota`, `tipo_nota`, `trimestre_nota`, `numero_nota`)
-    VALUES ($id_inscripcion, $promedioTrimestral, 'CalifDef', 4, 5)
-  ");
-  }
-
-}
-
-
-
-// Si el promedio de todos los trimestres da menos de 6 entonces...
-
-if($promedioTrimestral < 6){
-      
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-echo json_encode(["ok => true"]);
+echo json_encode(["ok" => true]);
 
