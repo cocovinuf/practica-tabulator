@@ -27,6 +27,8 @@
     ?>
         <h1>Administrador: <?php echo $_SESSION["nombre"]; ?></h1>
 
+
+<h2><a href="generador_libretas.php">Ir al generador de libretas</a></h2>
         <h2>Herramientas</h2>
 
 <!--                    AGREGAR ALUMNO                  -->
@@ -154,14 +156,27 @@
 <h3>Esta tabla muestra a todos los alumnos y todas sus notas como registros distintos, cuando se solucione la cuestion de acomodar las notas en una fila, aplicarlo aca</h3>
   <div id="tabla_admin"></div>
 
+<h3>Tabla de libretas</h3>
+  <div id="tabla_libretas"></div>
+
   <!-- Tabulator CSS (CDN) -->
   <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
 
   <!-- Tabulator JS (CDN) -->
   <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
 
-  <!-- Tu JS -->
-  <script src="../javascript/tabla_admin.js"></script>
+  <!-- JS -->
+<script src="../javascript/tabla_admin.js"></script>
+<script src="../javascript/tabla_libretas.js"></script>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -177,4 +192,5 @@
 
 
 </body>
+
 </html>
