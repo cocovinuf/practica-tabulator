@@ -17,6 +17,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="../javascript/main.js"></script>
         <script src='../javascript/mostrar_mensaje.js'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
+        <link href="/dist/css/tabulator_midnight.min.css" rel="stylesheet">
         <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
         <title>Administrador</title>
     </head>
@@ -58,15 +61,20 @@ include "../funciones_php/funciones.php"
             "<br><br>
             <form method='POST'>
             <input type='button' id='btn_solicitar_libreta' value='Solicitar Libreta'>  
-            <input type='hidden' name='id_sede_libretas' value='$id_sede'>
-            <input type='hidden' name='ano_libretas' value='$ano'>
             </form>";
         }
     }    
 ?>
 
 <h3>Tabla de libretas</h3>
+
+<br>
+<button id="download-pdf">Descargar Libreta</button>
+<br><br>
+
   <div id="tabla_libretas"></div>
+
+
 
   <!-- Tabulator CSS (CDN) -->
   <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">

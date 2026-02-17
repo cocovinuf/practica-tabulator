@@ -77,15 +77,14 @@ function selectorMaterias ($conexion , $name_del_select){
 }
 
 function selectorAlumno($conexion, $name_del_select, $sede, $ano){
-    $alumnos = $conexion -> query("
+   $alumnos = $conexion->query("
     SELECT 
     a.nombre_alumno, 
-    a.id_alumno, 
-    i.id_inscripcion 
-    FROM alumnos a, inscripciones i
-    WHERE ano_alumno = $ano
-    AND id_sede = $sede;
-    ");
+    a.id_alumno
+    FROM alumnos a
+    WHERE a.ano_alumno = $ano
+    AND a.id_sede = $sede
+");
 
     echo  "<br>";
     echo "<select name=$name_del_select>";
@@ -94,7 +93,6 @@ function selectorAlumno($conexion, $name_del_select, $sede, $ano){
         while($fila = $alumnos -> fetch_assoc()){
             $id_alumno = $fila['id_alumno'];
             $nombre_alumno = $fila['nombre_alumno'];
-            $id_inscripcion = $fila['id_inscripcion'];
 
             $selected = "";
 

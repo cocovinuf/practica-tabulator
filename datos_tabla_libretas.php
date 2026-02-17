@@ -18,7 +18,9 @@ if($id_sede && $ano && $id_alumno){
     n.tipo_nota,
     n.valor_nota,
     a.nombre_alumno,
-    m.nombre_materia
+    a.dni_alumno,
+    m.nombre_materia,
+    s.nombre_sede
     FROM notas n
     LEFT JOIN inscripciones i
     ON i.id_inscripcion = n.id_inscripcion
@@ -26,6 +28,8 @@ if($id_sede && $ano && $id_alumno){
     ON a.id_alumno = i.id_alumno
     LEFT JOIN materias m
     ON m.id_materia = i.id_materia
+    LEFT JOIN sedes s
+    ON s.id_sede = a.id_sede
     WHERE a.id_alumno = $id_alumno
     AND n.tipo_nota NOT IN ('Envio', 'Concepto')
   ");
@@ -47,8 +51,10 @@ $datos_modificado = [];
 foreach($datos as $nota){
 
     $materia = $nota['nombre_materia'];
-    $alumno  = $nota['nombre_alumno'];
-
+    $nombre_alumno  = $nota['nombre_alumno'];
+    $dni_alumno = $nota['dni_alumno'];
+    $nombre_sede = $nota['nombre_sede'];
+    
     $trimestre = $nota['trimestre_nota'];
     $numero    = $nota['numero_nota'];
     $tipo      = $nota['tipo_nota'];
@@ -61,7 +67,9 @@ foreach($datos as $nota){
         $datos_modificado[$materia] = [ //
         // Dentro de ese array hay conjuntos de clave valor, que seran:
             "nombre_materia" => $materia,
-            "nombre_alumno"  => $alumno
+            "nombre_alumno"  => $nombre_alumno,
+            "dni_alumno" => $dni_alumno,
+            "nombre_sede" => $nombre_sede
         ];
     }
 
