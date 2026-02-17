@@ -347,5 +347,5 @@ table.on("cellEdited", function (cell) {
       console.log(resp);
     });
 
-  location.reload();
+  //location.reload();
 });

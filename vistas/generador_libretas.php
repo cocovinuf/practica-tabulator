@@ -55,10 +55,11 @@ include "../funciones_php/funciones.php"
             $ano = $_POST['ano_libretas'];
             selectorAlumno($conexion,'nombre_alumno_libreta', $id_sede, $ano);   
             echo
-            "</form>
-            <br><br>
+            "<br><br>
             <form method='POST'>
             <input type='button' id='btn_solicitar_libreta' value='Solicitar Libreta'>  
+            <input type='hidden' name='id_sede_libretas' value='$id_sede'>
+            <input type='hidden' name='ano_libretas' value='$ano'>
             </form>";
         }
     }    

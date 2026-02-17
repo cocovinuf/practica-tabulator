@@ -8,6 +8,12 @@ document.addEventListener("click", function (e) {
     let ano = document.querySelector("[name='ano_libretas']").value;
     let alumno = document.querySelector("[name='nombre_alumno_libreta']").value;
 
+    console.log("Llega al js");
+    console.log("La sede es: " + sede);
+    console.log("El ano es: " + ano);
+    console.log("El alumno es: " + alumno);
+
+    //Aca abajo hacemos una peticion ajax tipo GET a datos_tabla_libretas.php
     //table es la instancia de tabulator. setData lo que hace es buscar datos en la url que le indiques y recarga la tabla
     table.setData("../datos_tabla_libretas.php", {
       // Le decimos a tabulator que mande estos parametros al PHP para leerlos ahi con GET
