@@ -272,36 +272,6 @@ if($check -> num_rows > 0){
 
 
 
-//////////            DETERMINACION DE CALIFICACION DEFINITIVA Y ESTADO
-
-
-/* 
-
-Reglas:
-
-Orden de prioridad:
-
-PromTrim
-
-Diciembre
-
-Febrero
-
-
-
-
-Lógica:
-
-La primera que llegue a 6 o más → gana y se termina la evaluación.
-
-Si ninguna llega a 6 → se toma la mayor de las tres.
-
-Si una ya llegó a 6 y otra posterior es más alta → se ignora la posterior.
-
-*/
-
-
-
 
 
 // ----- LECTURAS -----
@@ -314,6 +284,7 @@ AND tipo_nota = 'PromTrim'
 AND trimestre_nota = 4
 AND numero_nota = 1
 ");
+
 $fila = $lecturaPromTrim -> fetch_assoc();
 $promTrim = ($fila && $fila['valor_nota'] !== null && $fila['valor_nota'] !== '') 
     ? (float)$fila['valor_nota'] 

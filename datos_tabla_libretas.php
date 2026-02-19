@@ -18,6 +18,7 @@ if($id_sede && $ano && $id_alumno){
     n.tipo_nota,
     n.valor_nota,
     a.nombre_alumno,
+    a.ano_alumno,
     a.dni_alumno,
     m.nombre_materia,
     s.nombre_sede
@@ -54,6 +55,7 @@ foreach($datos as $nota){
     $nombre_alumno  = $nota['nombre_alumno'];
     $dni_alumno = $nota['dni_alumno'];
     $nombre_sede = $nota['nombre_sede'];
+    $ano_alumno = $nota['ano_alumno'];
     
     $trimestre = $nota['trimestre_nota'];
     $numero    = $nota['numero_nota'];
@@ -69,7 +71,8 @@ foreach($datos as $nota){
             "nombre_materia" => $materia,
             "nombre_alumno"  => $nombre_alumno,
             "dni_alumno" => $dni_alumno,
-            "nombre_sede" => $nombre_sede
+            "nombre_sede" => $nombre_sede,
+            "ano_alumno" => $ano_alumno
         ];
     }
 

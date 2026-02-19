@@ -131,7 +131,18 @@
         include "../controlador/controlador_eliminar_inscripcion.php";
     ?>
 </div>
-    
+<!--                    MODIFICAR DATOS DE ALUMNO                 -->
+
+<div class="caja-herramientas-alumno">
+<h4>Modificar datos de alumno</h4>
+<form method="POST">
+    <input type="text" name="dni_alumno_modif" placeholder="DNI del alumno a modificar">
+    <input type="submit" value="Seleccionar Alumno" name="btn_modificar_alumno">
+</form>
+<?php
+    include '../controlador/controlador_modificar_alumno.php'
+?>
+</div>
 <!--                    ACTIVAR/DESACTIVAR EDICION DE NOTAS                 -->
 <div class="caja-herramientas-alumno">
     <h4>Edicion de notas en planillas para profesores y tutores (AUN NO FUNCIONA)</h4>

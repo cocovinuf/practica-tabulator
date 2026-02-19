@@ -19,7 +19,7 @@
         <script src='../javascript/mostrar_mensaje.js'></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
-        <link href="/dist/css/tabulator_midnight.min.css" rel="stylesheet">
+        <link href="/dist/css/bootstrap/tabulator_bootstrap.min.css" rel="stylesheet">
         <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
         <title>Administrador</title>
     </head>
