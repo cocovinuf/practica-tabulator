@@ -1,7 +1,6 @@
 //Esto crea un objeto que está modelado en la libreria de tabulator. Se manda el objeto y tabulator lo instancia
 
 //AjaxURL se refiere a la url desde donde se van a obtener los datos partiendo desde planilla_materias.php ya que es donde se carga tabla.js
-
 var table = new Tabulator("#tabla_profesores", {
   layout: "fitDataTable",
   validationMode: "blocking",
@@ -333,9 +332,8 @@ var table = new Tabulator("#tabla_profesores", {
 });
 
 table.on("cellEdited", function (cell) {
-  let fila = cell.getRow().getData();
-
-  console.log(fila);
+  let row = cell.getRow(); //devuelve el objeto row de tabulator
+  let fila = row.getData(); //devuelve datos planos (el json)
 
   fetch("../controlador/controlador_guardar_notas.php", {
     method: "POST",
@@ -344,8 +342,7 @@ table.on("cellEdited", function (cell) {
   })
     .then((res) => res.json())
     .then((resp) => {
-      console.log(resp);
+      row.update(resp);
+      console.log("¡Funciono!");
     });
-
-  //location.reload();
 });

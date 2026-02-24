@@ -84,7 +84,7 @@ function selectorAlumno($conexion, $name_del_select, $sede, $ano){
     FROM alumnos a
     WHERE a.ano_alumno = $ano
     AND a.id_sede = $sede
-");
+    ");
 
     echo  "<br>";
     echo "<select name=$name_del_select>";
@@ -109,7 +109,34 @@ function selectorAlumno($conexion, $name_del_select, $sede, $ano){
 
 }
 
+function leerNotasAlumno($conexion, $id_inscripcion){
+  // Esta funcion lee SOLO las notas de UN alumno en UNA materia y las devuelve como un array asociativo
+  $consulta = $conexion ->query("
+  SELECT 
+  trimestre_nota,
+  numero_nota,
+  tipo_nota,
+  valor_nota
+  FROM notas
+  WHERE id_inscripcion = $id_inscripcion
+  ");
 
+  $notas = [];
+
+  while($fila = $consulta -> fetch_assoc()){
+  $trimestre = $fila['trimestre_nota'];
+  $numero = $fila['numero_nota'];
+  $tipo = $fila['tipo_nota'];
+  $valor = $fila['valor_nota'];
+
+  $clasificacion = 'T'.$trimestre.'N'.$numero.$tipo;
+  $notas[$clasificacion] = $valor;
+
+  }
+
+  return $notas;
+
+}
 
 ?>
 

@@ -1,6 +1,7 @@
 <?php
 
 include ("../conexion.php");
+require_once("../funciones_php/funciones.php");
 
 //Indica que estoy recibiendo un Json
 header("Content-Type: application/json");
@@ -362,7 +363,9 @@ if($conexion->affected_rows == 0){
 }
 
 
+$notas_actualizadas = leerNotasAlumno($conexion, $id_inscripcion);
 
 
-echo json_encode(["ok" => true]);
+
+echo json_encode($notas_actualizadas);
 
