@@ -20,6 +20,7 @@ var table = new Tabulator("#tabla_profesores", {
           field: "nombre",
           headerFilter: "input",
           headerFilterPlaceholder: "Distingue tildes",
+          frozen: true,
         },
         {
           title: "Año",
@@ -333,12 +334,12 @@ var table = new Tabulator("#tabla_profesores", {
 
 table.on("cellEdited", function (cell) {
   let row = cell.getRow(); //devuelve el objeto row de tabulator
-  let fila = row.getData(); //devuelve datos planos (el json)
+  let fila = row.getData(); //convierte los datos del objeto en un json
 
   fetch("../controlador/controlador_guardar_notas.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(fila),
+    body: JSON.stringify(fila), // mando al controlador de guardar nota los datos de la fila
   })
     .then((res) => res.json())
     .then((resp) => {

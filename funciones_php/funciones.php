@@ -60,7 +60,7 @@ function selectorMaterias ($conexion , $name_del_select){
 
         $resultado = $conexion -> query($consultaMaterias);
         echo  "<br>";
-        echo "<select name=$name_del_select>";
+        echo "<select class='form-control' name=$name_del_select>";
             
 
             while($fila = $resultado -> fetch_assoc()){

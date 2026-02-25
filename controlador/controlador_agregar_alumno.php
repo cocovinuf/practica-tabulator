@@ -33,7 +33,7 @@ if(!empty($_POST["btn_agg_alumno"])) {
         }
 
     }else{
-        echo "DEBE INGRESAR TODOS LOS DATOS";
+        echo "<script>mostrarMensaje('Debe rellenar todos los datos')</script>";
     }
 }
 

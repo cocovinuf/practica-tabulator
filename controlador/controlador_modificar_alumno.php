@@ -2,7 +2,7 @@
 include '../conexion.php';
 
 if(isset($_POST['btn_modificar_alumno'])){  
-    if(!empty('dni_alumno_modif')){
+    if(!empty($_POST['dni_alumno_modif'])){
 
         $dni_alumno_modif = $_POST['dni_alumno_modif'];
 
@@ -30,7 +30,6 @@ if(isset($_POST['btn_modificar_alumno'])){
         $ano_previo = $resultado['ano_alumno'];
         $id_alumno = $resultado['id_alumno'];
         
-
         
         echo "<br>Modificando al alumno: $nombre_previo" . "<br><br>";
             ?>
