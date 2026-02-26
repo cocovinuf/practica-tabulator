@@ -29,7 +29,7 @@ include "../includes/header_profes.php"
     
     <div class="container-fluid  p-5">
         <?php
-            $consulta_materias = "select * from materias where id_profesor = '$_SESSION[id_usuario]'";
+            $consulta_materias = "select * from materias";
             $resultado_materias = mysqli_query($conexion, $consulta_materias);
 
             while($fila = $resultado_materias -> fetch_array()){

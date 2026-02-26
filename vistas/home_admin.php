@@ -24,26 +24,23 @@
 
     <?php
     include "../conexion.php";
-    include "../funciones_php/funciones.php"
+    include "../funciones_php/funciones.php";
+    include "../includes/header_admin.php";
     ?>
 
 
-<header>
-    <h1 class="h1 m-3 bg-success p-5">Administrador: <?php echo $_SESSION["nombre"]; ?></h1>
-    <a class="btn btn-danger m-3" href="../controlador/controlador_cerrar_sesion.php" value="Cerrar Sesion">Cerrar Sesion</a>
-    <h1 class="m-1 btn btn-secondary"><a href="generador_libretas.php">Ir al generador de libretas</a></h1>
-</header>
+
 
 
 
 <h2 class="h2 m-3">Herramientas</h2>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
 
 
         <!--                    AGREGAR ALUMNO                  -->
-        <div class="col-xl-5 bg-success-subtle m-1 p-2">
+        <div class="col-xl-5 bg-success-subtle m-3 p-2">
             <h4>Agregar alumno a la lista</h4>
                 <form method="post" name="agregar_alumno">
                     <label class="form-label" for="nombre_alumno_agg">Apellido y nombre: </label>
@@ -91,7 +88,7 @@
         </div>
 
         <!--                    ELIMINAR ALUMNO                 -->
-        <div class="col-xl-5 bg-success-subtle  m-1 p-2">
+        <div class="col-xl-5 bg-success-subtle  m-3 p-2">
             <h4>Eliminar alumno de la lista</h4>
                 <form method="post" name="eliminar_alumno">
                     <label class="form-label" for="dni_alumno_elim">Dni del alumno a eliminar: </label>
@@ -105,7 +102,7 @@
         </div>
 
         <!--                    INSCRIBIR ALUMNO                 -->
-        <div class="col-xl-5 bg-success-subtle m-1  p-2">
+        <div class="col-xl-5 bg-success-subtle m-3  p-2">
             <h4>Inscribir alumno a materia</h4>
             <form method = "POST">
                 <label class="form-label">DNI del alumno a inscribir:</label>
@@ -127,7 +124,7 @@
         </div>
 
         <!--                    ELIMINAR INSCRIPCION               -->
-        <div class="col-xl-5 bg-success-subtle  m-1 p-2">
+        <div class="col-xl-5 bg-success-subtle  m-3 p-2">
             <h4>Eliminar inscripción de alumno a materia</h4>
             <form method="POST">
                 <label class="form-label">DNI del alumno a eliminar inscripcion:</label>
@@ -144,7 +141,7 @@
             ?>
         </div>
         <!--                    MODIFICAR DATOS DE ALUMNO                 -->
-        <div class="col-xl-5 bg-success-subtle m-1 p-2">
+        <div class="col-xl-5 bg-success-subtle m-3 p-2">
             <h4>Modificar datos de alumno</h4>
             <form method="POST">
                 <input class="form-control" type="text" name="dni_alumno_modif" placeholder="DNI del alumno a modificar"><br>
@@ -177,11 +174,10 @@
   <!-- JS -->
 <script src="../javascript/tabla_admin.js"></script>
 
-
 </body>
 
-<footer>
-    <p class="text-center text-muted m-2 p-2 border 1px black solid">Aplicacion desarrollada por Jorge Andres Vinuf para ESRTIC CUISE 8500 Provincia de Misiones</p>
-</footer>
+<?php
+include "../includes/footer.php"
+?>
 
 </html>

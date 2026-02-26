@@ -18,10 +18,12 @@ if(!empty($_POST["btn_ingresar"])) {
             $_SESSION["dni"] = $datos -> dni_usuario;
             $SESSION["rol"] = $datos -> rol_usuario;
 
-            if($datos -> rol_usuario == 'Profesor' or $datos -> rol_usuario == 'Tutor'){
+            if($datos -> rol_usuario == 'Profesor'){
                 header("location:../vistas/seleccion_materia.php");}
             if($datos -> rol_usuario == 'Administrador'){
                 header("location:../vistas/home_admin.php");}
+            if($datos -> rol_usuario == 'Tutor'){
+                header("location:../vistas/seleccion_materia_tutores.php");}
                 
         }else{echo "Usuario o contraseña incorrectos";}
 
