@@ -20,25 +20,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
         <link href="/dist/css/bootstrap/tabulator_bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
         <title>Administrador</title>
     </head>
-    <body>
+    <body class="bg-dark-subtle">
 
 <?php
 include "../conexion.php";
-include "../funciones_php/funciones.php"
+include "../funciones_php/funciones.php";
+include "../includes/header_admin.php";
 ?>
-    <h1>Administrador: <?php echo $_SESSION["nombre"]; ?></h1>
 
-    <h2>Herramientas</h2>
-
-
-
-<!--                    CERRAR SESION                -->
-<a class="boton-cerrar-sesion" href="../controlador/controlador_cerrar_sesion.php" value="Cerrar Sesion">Cerrar Sesion</a>
-
-<br><br><br><br>
+<div class="container-fluid">
 
 <!--                    TABULATOR               -->
 
@@ -65,14 +59,15 @@ include "../funciones_php/funciones.php"
         }
     }    
 ?>
-
+<br><br>
 <h3>Tabla de libretas</h3>
 
-<br>
-<button id="download-pdf">Descargar Libreta</button>
+<button id="download-pdf" class="">Descargar Libreta</button>
 <br><br>
 
-  <div id="tabla_libretas"></div>
+</div>
+
+  <div id="tabla_libretas" class="m-5"></div>
 
 
 

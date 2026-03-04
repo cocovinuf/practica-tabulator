@@ -16,7 +16,7 @@
     <script src="../javascript/mostrar_mensaje.js"></script>
     <title>Materias</title>
 </head>
-<body>
+ <body class="bg-dark-subtle">
 
 <?php
 include "../includes/header_profes.php"

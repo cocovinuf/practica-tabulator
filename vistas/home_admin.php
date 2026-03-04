@@ -20,7 +20,7 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
             <title>Administrador</title>
         </head>
-        <body>
+        <body class="bg-dark-subtle">
 
     <?php
     include "../conexion.php";
@@ -40,7 +40,7 @@
 
 
         <!--                    AGREGAR ALUMNO                  -->
-        <div class="col-xl-5 bg-success-subtle m-3 p-2">
+        <div class="col-xl-5 bg-secondary-subtle m-3 p-2">
             <h4>Agregar alumno a la lista</h4>
                 <form method="post" name="agregar_alumno">
                     <label class="form-label" for="nombre_alumno_agg">Apellido y nombre: </label>
@@ -88,7 +88,7 @@
         </div>
 
         <!--                    ELIMINAR ALUMNO                 -->
-        <div class="col-xl-5 bg-success-subtle  m-3 p-2">
+        <div class="col-xl-5 bg-secondary-subtle  m-3 p-2">
             <h4>Eliminar alumno de la lista</h4>
                 <form method="post" name="eliminar_alumno">
                     <label class="form-label" for="dni_alumno_elim">Dni del alumno a eliminar: </label>
@@ -102,7 +102,7 @@
         </div>
 
         <!--                    INSCRIBIR ALUMNO                 -->
-        <div class="col-xl-5 bg-success-subtle m-3  p-2">
+        <div class="col-xl-5 bg-secondary-subtle m-3  p-2">
             <h4>Inscribir alumno a materia</h4>
             <form method = "POST">
                 <label class="form-label">DNI del alumno a inscribir:</label>
@@ -124,7 +124,7 @@
         </div>
 
         <!--                    ELIMINAR INSCRIPCION               -->
-        <div class="col-xl-5 bg-success-subtle  m-3 p-2">
+        <div class="col-xl-5 bg-secondary-subtle  m-3 p-2">
             <h4>Eliminar inscripción de alumno a materia</h4>
             <form method="POST">
                 <label class="form-label">DNI del alumno a eliminar inscripcion:</label>
@@ -141,7 +141,7 @@
             ?>
         </div>
         <!--                    MODIFICAR DATOS DE ALUMNO                 -->
-        <div class="col-xl-5 bg-success-subtle m-3 p-2">
+        <div class="col-xl-5 bg-secondary-subtle m-3 p-2">
             <h4>Modificar datos de alumno</h4>
             <form method="POST">
                 <input class="form-control" type="text" name="dni_alumno_modif" placeholder="DNI del alumno a modificar"><br>
@@ -159,8 +159,8 @@
 <!--                    TABULATOR               -->
 
 
-<h2 class="h2 m-3">Tabla admin</h2> <br>
-<h3>Esta tabla muestra a todos los alumnos y todas sus notas como registros distintos, cuando se solucione la cuestion de acomodar las notas en una fila, aplicarlo aca</h3>
+<h2 class="h2 m-3">Tabla maestra:</h2> <br>
+
   <div class="m-3" id="tabla_admin"></div>
 
 

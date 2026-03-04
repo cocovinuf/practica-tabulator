@@ -6,6 +6,8 @@
     exit();
     }
 
+include '../includes/header_profes.php';
+
  // Leo los parametros pasados por URL y los asigno a una variable
     $_SESSION['id_materia'] = $_GET['id_materia'];
     
@@ -34,9 +36,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title><?php echo $ano_materia . ' ' . $nombre_materia ?></title>
 </head>
-<body>
+ <body class="bg-dark-subtle">
 
 <!-- TITULO DE MATERIA SELECCIONADA -->
 <?php
@@ -45,7 +48,7 @@
 
 
 <!--                    TABULATOR               -->
-<div id="tabla_profesores" ></div>
+<div id="tabla_profesores" class="m-3" ></div>
 
   <!-- Tabulator CSS (CDN) -->
   <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">

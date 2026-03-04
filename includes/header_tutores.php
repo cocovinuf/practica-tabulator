@@ -21,7 +21,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <a class="col-xl-2 btn btn-secondary m-3" href="seleccion_materia.php" >Volver a lista de materias</a>
+            <a class="col-xl-2 btn btn-secondary m-3" href="seleccion_materia_tutores.php" >Volver a lista de materias</a>
             
             <form method="POST" class="col-xl-2 btn btn-secondary m-3">
                 <input type="submit" name="btn_solicitud_cambiar_contrasena" value="Quiero cambiar mi contraseña" class="btn text-white "> <br><br>
