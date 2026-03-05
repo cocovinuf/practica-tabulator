@@ -1,7 +1,7 @@
 //Esto crea un objeto que está modelado en la libreria de tabulator. Se manda el objeto y tabulator lo instancia
 
 //AjaxURL se refiere a la url desde donde se van a obtener los datos partiendo desde planilla_materias.php ya que es donde se carga tabla.js
-var table = new Tabulator("#tabla_profesores", {
+var table = new Tabulator("#tabla_tutores", {
   layout: "fitDataTable",
   validationMode: "blocking",
   ajaxURL: "../datos_tabla_profesores.php",
@@ -43,19 +43,19 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Nota 1",
           field: "T1N1Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
           title: "Nota 2",
           field: "T1N2Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
           title: "Nota 3",
           field: "T1N3Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
@@ -89,7 +89,7 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Recuperatorio",
           field: "T1N3Recuperatorio",
-          editor: "",
+
           validator: "numeric",
           headerVertical: true,
         },
@@ -98,7 +98,7 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Nota Trimestral",
           field: "T1N4NotaTrimestral",
-          editor: "",
+
           headerVertical: true,
           formatter: function (cell) {
             let value = cell.getValue();
@@ -124,19 +124,19 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Nota 4",
           field: "T2N4Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
           title: "Nota 5",
           field: "T2N5Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
           title: "Nota 6",
           field: "T2N6Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
@@ -170,7 +170,7 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Recuperatorio",
           field: "T2N3Recuperatorio",
-          editor: "",
+
           validator: "numeric",
           headerVertical: true,
         },
@@ -178,7 +178,7 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Nota Trimestral",
           field: "T2N4NotaTrimestral",
-          editor: "",
+
           headerVertical: true,
           formatter: function (cell) {
             let value = cell.getValue();
@@ -204,19 +204,19 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Nota 7",
           field: "T3N7Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
           title: "Nota 8",
           field: "T3N8Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
           title: "Nota 9",
           field: "T3N9Envio",
-          editor: "",
+
           validator: "numeric",
         },
         {
@@ -250,7 +250,7 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Recuperatorio",
           field: "T3N3Recuperatorio",
-          editor: "",
+
           validator: "numeric",
           headerVertical: true,
         },
@@ -258,7 +258,7 @@ var table = new Tabulator("#tabla_profesores", {
         {
           title: "Nota Trimestral",
           field: "T3N4NotaTrimestral",
-          editor: "",
+
           headerVertical: true,
           formatter: function (cell) {
             let value = cell.getValue();
@@ -301,14 +301,12 @@ var table = new Tabulator("#tabla_profesores", {
       field: "T4N2Diciembre",
       validator: "numeric",
       headerVertical: true,
-      editor: "",
     },
     {
       title: "FEB",
       field: "T4N3Febrero",
       validator: "numeric",
       headerVertical: true,
-      editor: "",
     },
     {
       title: "Calif Def.",

@@ -1,12 +1,26 @@
 <?php
     include "../conexion.php";
     session_start();
-    if(empty($_SESSION["nombre"])){
+
+    if(empty($_SESSION["nombre"]) || (empty($_SESSION["rol"]) )){
     header("location:login.php");
     exit();
     }
 
-include '../includes/header_profes.php';
+$rol =  ($_SESSION["rol"]);
+
+if( $rol == 'Tutor'){
+    include '../includes/header_tutores.php';
+    $tabla = 'tabla_tutores';
+    $direccion_tabla = 'tabla_tutores.js';
+}else{
+    include '../includes/header_profes.php';
+    $tabla = 'tabla_profesores';
+    $direccion_tabla = 'tabla_profesores.js';
+}
+
+
+
 
  // Leo los parametros pasados por URL y los asigno a una variable
     $_SESSION['id_materia'] = $_GET['id_materia'];
@@ -47,8 +61,11 @@ include '../includes/header_profes.php';
 ?>
 
 
+
+
+
 <!--                    TABULATOR               -->
-<div id="tabla_profesores" class="m-3" ></div>
+<div id="<?php echo $tabla; ?>" class="m-3"></div>
 
   <!-- Tabulator CSS (CDN) -->
   <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
@@ -60,8 +77,14 @@ include '../includes/header_profes.php';
   <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
 
   <!-- Tu JS -->
-  <script src="../javascript/tabla_profesores.js" ></script>
+  <script src="../javascript/<?php echo $direccion_tabla; ?>" ></script>
+  
 
 </body>
+
+
+<?php
+include "../includes/footer.php";
+?>
 
 </html>

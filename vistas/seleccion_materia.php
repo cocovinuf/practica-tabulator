@@ -1,9 +1,12 @@
 <?php
     include "../conexion.php";
     session_start();
-    if(empty($_SESSION["id_usuario"])){
+    if(empty($_SESSION["id_usuario"]) ||
+    empty($_SESSION["nombre"]) ||
+    empty($_SESSION["rol"])){
     header("location:login.php");
     exit();
+
 }
 ?>
 
