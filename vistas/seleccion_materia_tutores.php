@@ -56,4 +56,9 @@ include "../includes/header_tutores.php"
 
 
 </body>
+
+<?php
+include '../includes/footer.php';
+?>
+
 </html>

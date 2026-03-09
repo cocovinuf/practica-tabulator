@@ -59,4 +59,9 @@ include "../includes/header_profes.php"
 
 
 </body>
+
+<?php
+include '../includes/footer.php';
+?>
+
 </html>

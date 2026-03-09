@@ -24,7 +24,7 @@
         <link href="../estilos/estilos_home_admin.css" rel="stylesheet">
         <title>Administrador</title>
     </head>
-    <body class="bg-dark-subtle">
+<body class="bg-dark-subtle">
 
 <?php
 include "../conexion.php";
@@ -81,9 +81,10 @@ include "../includes/header_admin.php";
 <script src="../javascript/tabla_libretas.js"></script>
 
 
+</body>
 
-
-
-
+<?php
+include '../includes/footer.php';
+?>
 
 

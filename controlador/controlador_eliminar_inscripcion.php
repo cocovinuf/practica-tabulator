@@ -38,7 +38,7 @@ if(isset($_POST['btn_eliminar_inscripcion'])){
 
 
 
-        }
+        }else{echo "<script>mostrarMensaje('No existe ningun alumno con ese DNI')</script>";}
     }else{echo "<script>mostrarMensaje('Debe cargar todos los datos del alumno a eliminar')</script>";}
 }
 

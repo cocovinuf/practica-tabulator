@@ -4,7 +4,7 @@
 var table = new Tabulator("#tabla_tutores", {
   layout: "fitDataTable",
   validationMode: "blocking",
-  ajaxURL: "../datos_tabla_profesores.php",
+  ajaxURL: "../datos_tabla_tutores.php",
   ajaxCache: false,
   pagination: "local",
   paginationSize: 20,

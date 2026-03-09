@@ -17,6 +17,7 @@ if(!empty($_POST["btn_ingresar"])) {
             $_SESSION["nombre"] = $datos -> nombre_usuario;
             $_SESSION["dni"] = $datos -> dni_usuario;
             $_SESSION["rol"] = $datos -> rol_usuario;
+            $_SESSION["id_sede"] = $datos -> id_sede;
 
             if($datos -> rol_usuario == 'Profesor'){
                 header("location:../vistas/seleccion_materia.php");}
