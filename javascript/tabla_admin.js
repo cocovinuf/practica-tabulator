@@ -18,14 +18,14 @@ var table = new Tabulator("#tabla_admin", {
         { title: "ID", field: "id_alumno", headerFilter: "input" },
         {
           title: "Nombre",
-          field: "nombre",
+          field: "nombre_alumno",
           headerFilter: "input",
           headerFilterPlaceholder: "Distingue tildes",
         },
         { title: "Dni", field: "dni", headerFilter: "input" },
         {
           title: "Año Alumno",
-          field: "ano",
+          field: "ano_alumno",
           headerFilter: "list",
           headerFilterParams: { valuesLookup: true, clearable: true },
         },
@@ -37,7 +37,7 @@ var table = new Tabulator("#tabla_admin", {
         },
         {
           title: "Materia",
-          field: "materia",
+          field: "nombre_materia",
           headerFilter: "list",
           headerFilterParams: { valuesLookup: true, clearable: true },
         },

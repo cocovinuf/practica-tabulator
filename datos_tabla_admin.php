@@ -27,7 +27,7 @@ LEFT JOIN notas n
 ON n.id_inscripcion = i.id_inscripcion
 LEFT JOIN materias m
 ON i.id_materia = m.id_materia
-ORDER BY a.id_alumno;
+ORDER BY i.id_inscripcion, n.trimestre_nota, n.numero_nota;
 ";
 
 $resultado = $conexion->query($consulta_datos_alumnos);
@@ -52,11 +52,11 @@ for ($i=0; $i < $cantidad_datos ; $i++) {
 
 $id_inscripcion = $datos_alumnos[$i]['id_inscripcion']; 
 $id_alumno = $datos_alumnos[$i]['id_alumno'];
-$nombre = $datos_alumnos[$i]['nombre_alumno']; 
+$nombre_alumno = $datos_alumnos[$i]['nombre_alumno']; 
 $dni_alumno = $datos_alumnos[$i]['dni_alumno'];
 $sede = $datos_alumnos[$i]['nombre_sede']; 
-$ano = $datos_alumnos[$i]['ano_alumno'];
-$materia = $datos_alumnos[$i]['nombre_materia'];
+$ano_alumno = $datos_alumnos[$i]['ano_alumno'];
+$nombre_materia = $datos_alumnos[$i]['nombre_materia'];
 $ano_materia = $datos_alumnos[$i]['ano_materia'];
 //Genero primer array asociativo
 
@@ -79,11 +79,11 @@ if ($id_inscripcion != $id_actual) {
     $datos_unificados = [
     'id_inscripcion' => $id_inscripcion,
     'id_alumno' => $id_alumno,
-    'nombre' => $nombre,
-    'dni' => $dni_alumno,
+    'nombre_alumno' => $nombre_alumno,
+    'dni_alumno' => $dni_alumno,
     'sede' => $sede,
-    'ano' => $ano,
-    'materia' => $materia,
+    'ano_alumno' => $ano_alumno,
+    'nombre_materia' => $nombre_materia,
     'ano_materia' => $ano_materia
     ];
 
