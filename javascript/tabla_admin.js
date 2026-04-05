@@ -89,6 +89,5 @@ var table = new Tabulator("#tabla_admin", {
     { title: "DIC", field: "T4N2Diciembre", headerVertical: true, editor: "" },
     { title: "FEB", field: "T4N3Febrero", headerVertical: true, editor: "" },
     { title: "Calif Def.", field: "T4N5CalifDef", headerVertical: true },
-    { title: "Estado", field: "", headerVertical: true },
   ],
 });
