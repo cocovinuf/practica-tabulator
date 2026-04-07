@@ -27,6 +27,8 @@
     <input type="submit" name="btn_ingresar" value="Iniciar sesion" class="boton-login"> 
 
     </form> 
+<h3><a href="sobre_pagina.php">¿De que trata esta pagina?</a></h3>
+
 
 </div>
 
