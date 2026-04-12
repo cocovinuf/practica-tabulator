@@ -11,7 +11,7 @@
 
 <!--                    CAJA CON CAMPOS DEL LOGIN               -->
 <div class="caja-login">
-    <H1>Planillas de calificaciones ESRTIC</H1>
+    <H1>Planillas de calificaciones para colegio virtual rural</H1>
     <h2>Ingresar a su cuenta</h2>
 
     <?php

@@ -37,6 +37,51 @@
                 Cabe aclarar que este sistema actualmente no se está utilizando en la institución educativa debido a cuestiones de seguridad y concurrencia en la base de datos.
             </p>
             
+            <h2>Usuarios de prueba</h2>
+
+            <p>
+                <b>Profesor:</b> 
+                <br>
+
+                Usuario: 22222222
+                <br>
+
+                Contraseña: 22222222
+                <br><br>
+                
+                Como Profesor podras: Cargar notas de alumnos de las 10 sedes en la materia y año que corresponda, ya sean notas de examenes o de recuperatorios. Tambien podras cambiar tu contraseña. No podras modificar las notas de concepto de los alumnos.   
+                
+                <br><br>
+                <b>Tutor</b> 
+                <br>
+
+                Usuario: 22222243
+                <br>
+
+                Contraseña: 22222243
+                <br><br>
+
+                Como Tutor podras cargar las notas de concepto de los alumnos de la sede que te corresponda, en todas las materias y todos los años pero no podras cargar notas de examenes o recuperatorios. Tambien podras cambiar tu contraseña
+
+                <br><br>
+                <b>Administrador</b> 
+                <br>
+
+                Usuario: 22222253
+                <br>
+
+                Contraseña: 22222253
+                <br><br>
+
+                Como Administrador podras agregar alumnos a la lista de alumnos, eliminar alumnos de la lista, inscribir a esos alumnos a materias, eliminar inscripcion a materias, modificar los datos de un alumno, visualizar las notas de todos los alumnos, cambiar tu contraseña, generar los boletines de calificaciones de todos los alumnos de forma automática. No podras cargar ninguna nota
+
+                <br><br>
+                <b>Todos nombres y datos personales que se exciben en esta aplicacion son ficticios y se utilizan solo a modo de ejemplo</b>
+
+            </p>
+
+
+            
         </div>
     </div>
 </div>
