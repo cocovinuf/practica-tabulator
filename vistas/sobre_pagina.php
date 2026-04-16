@@ -77,10 +77,19 @@
 
                 <br><br>
                 <b>Todos nombres y datos personales que se exciben en esta aplicacion son ficticios y se utilizan solo a modo de ejemplo</b>
-
             </p>
 
-
+            <h2>Tecnologias y herramientas usadas en el proyecto</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS (Bootstrap)</li>
+                <li>PHP</li>
+                <li>JavaScript</li>
+                <li>PhpMyAdmin</li>
+                <li>XAMPP</li>
+                <li>GIT</li>
+            </ul>
+            
             
         </div>
     </div>

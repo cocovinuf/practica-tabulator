@@ -22,7 +22,7 @@ var table = new Tabulator("#tabla_admin", {
           headerFilter: "input",
           headerFilterPlaceholder: "Distingue tildes",
         },
-        { title: "Dni", field: "dni", headerFilter: "input" },
+        { title: "Dni", field: "dni_alumno", headerFilter: "input" },
         {
           title: "Año Alumno",
           field: "ano_alumno",
