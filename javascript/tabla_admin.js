@@ -56,7 +56,7 @@ var table = new Tabulator("#tabla_admin", {
         { title: "Nota 1", field: "T1N1Envio", editor: "" },
         { title: "Nota 2", field: "T1N2Envio", editor: "" },
         { title: "Nota 3", field: "T1N3Envio", editor: "" },
-        { title: "Con", field: "", editor: "T1N1Concepto" },
+        { title: "Con", field: "T1N1Concepto", editor: "" },
         { title: "Promedio", field: "T1N2Promedio", headerVertical: true },
         { title: "Rec", field: "T1N3Recuperatorio", editor: "" },
       ],
